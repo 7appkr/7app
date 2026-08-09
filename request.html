@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>무료 시안 요청 - 7APP</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Paperozi', 'sans-serif'] },
+                    colors: {
+                        primary: '#6B46C1', 
+                        secondary: '#4299E1',
+                        dark: '#0F172A',
+                        darker: '#090E17',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-1Thin.woff2') format('woff2'); font-weight: 100; font-display: swap; }
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-2ExtraLight.woff2') format('woff2'); font-weight: 200; font-display: swap; }
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-3Light.woff2') format('woff2'); font-weight: 300; font-display: swap; }
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-5Medium.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-6SemiBold.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-8ExtraBold.woff2') format('woff2'); font-weight: 800; font-display: swap; }
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-9Black.woff2') format('woff2'); font-weight: 900; font-display: swap; }
+
+        body { font-family: 'Paperozi', sans-serif; word-break: keep-all; font-weight: 400; letter-spacing: 0.019em; background-color: #F8FAFC; }
+        
+        .template-radio:checked + div, .package-radio:checked + div {
+            border-color: #3B82F6;
+            background-color: #EFF6FF;
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.1);
+        }
+        .template-radio:checked + div .check-icon, .package-radio:checked + div .check-icon { display: flex; }
+        
+        .option-checkbox:checked + div {
+            border-color: #4F46E5;
+            background-color: #EEF2FF;
+            box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.1);
+        }
+
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased selection:bg-primary selection:text-white relative">
+
+    <header class="fixed w-full top-0 z-50 bg-dark/90 backdrop-blur-md border-b border-slate-800 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2 text-white font-black text-xl tracking-tight cursor-pointer" onclick="handleGoBack()">
+                <div class="w-6 h-6 bg-white rotate-45 rounded-sm"></div>
+                7APP
+            </div>
+            <button onclick="handleGoBack()" 
+                class="bg-white/10 text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-white/20 transition border border-white/20 flex items-center gap-2">
+                ← 홈페이지로 돌아가기
+            </button>
+        </div>
+    </header>
+
+    <section class="pt-32 pb-10 bg-white border-b border-slate-100 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-50/50 to-purple-50/50"></div>
+        <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
+            <span class="inline-block py-1.5 px-5 rounded-full bg-blue-100 text-blue-600 text-sm font-bold mb-5">
+                무료 시안 제공
+            </span>
+            <h1 class="text-4xl md:text-5xl font-black leading-tight mb-1 text-slate-800 tracking-tight">
+                무료 시안 3종 요청하기
+            </h1>
+            <p class="text-[16px] font-medium mb-4  text-slate-400 leading-relaxed max-w-2xl mx-auto word-keep mb-3">
+                무료 시안 제작을 위한 앱 구조 및 상품 및 옵션 파악
+            </p>
+            <p class="text-[16px] font-medium text-slate-600 leading-relaxed max-w-2xl mx-auto word-keep mb-8">
+                아래 항목들을 선택하여 앱에 대한 내용을 입력해 주시면<br>
+                <strong class="text-slate-800">메인화면 하나에 대해 맞춤형 시안 3종류를 제공</strong>해 드립니다.
+            </p>
+
+            <div class="flex flex-col gap-2 items-center justify-center">
+                <div class="flex flex-col md:flex-row gap-2 w-full justify-center">
+                    <div class="bg-[#EFF4FF] text-[#3B4BE5] font-black text-lg md:text-xl px-8 py-3 rounded-xl shadow-sm border border-blue-100 text-center w-full md:w-auto">
+                        24시간 이내 시안 전송!
+                    </div>
+                    <div class="bg-[#EEF2FF] text-[#4F46E5] font-black text-lg md:text-xl px-8 py-3 rounded-xl shadow-sm border border-indigo-100 text-center w-full md:w-auto">
+                        개발 비용은 작업 의뢰시 발생!
+                    </div>
+                </div>
+                <div class="bg-[#FFF1F2] text-[#DC2626] font-black text-lg md:text-xl px-8 py-3 rounded-xl inline-block shadow-sm border border-rose-100">
+                    견적을 PDF로 다운로드 받아 보실 수 있습니다.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-6">
+        <form id="requestForm" class="max-w-5xl mx-auto px-4 space-y-8">
+            <div id="pdf-area" class="bg-[#F8FAFC] pb-8 pt-4 px-4 sm:px-8 rounded-xl space-y-8 transition-all">
+                <div id="pdf-header" class="hidden text-center py-10 bg-white border border-slate-200 mb-8 rounded-2xl shadow-sm mt-4">
+                    <h1 id="pdf-title" class="text-4xl font-black text-slate-800 mb-3 tracking-tight">7APP 앱 개발 견적서</h1>
+                    <p class="text-slate-500 font-medium text-[15px]">고객님께서 입력 및 선택하신 항목을 바탕으로 산출된 예상 견적 내역입니다.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <img src="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%232563EB'/%3E%3Ctext x='16' y='21.5' font-family='Arial, sans-serif' font-size='16' font-weight='bold' fill='white' text-anchor='middle'%3E1%3C/text%3E%3C/svg%3E" class="w-8 h-8 rounded-full shadow-sm" alt="1">
+                        <h2 class="text-xl font-black">앱 템플릿을 선택해주세요</h2>
+                    </div>
+                    <p class="text-sm text-slate-500 mb-6">가장 유사한 앱 종류를 선택하세요. 선택 시 <strong>패키지와 옵션이 자동으로 구성</strong>됩니다.</p>
+                    
+                    <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
+                        <label class="cursor-pointer h-full block">
+                            <input type="radio" name="app_template" value="운동/루틴 관리 앱" class="template-radio peer sr-only" onchange="handleTemplateChange()" required>
+                            <div class="bg-white rounded-2xl p-5 border-2 border-slate-100 hover:border-blue-200 transition h-full flex flex-col relative">
+                                <div class="absolute top-4 right-4 w-6 h-6 rounded-full border-2 border-slate-200 check-icon hidden items-center justify-center bg-blue-500 border-blue-500">
+                                    <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                </div>
+                                <div class="text-3xl mb-2">🏃‍♂️</div>
+                                <h3 class="text-[15px] font-black text-slate-800 mb-1">운동 / 루틴 관리 앱</h3>
+                                <p class="text-[12px] text-slate-500 word-keep">사용자의 목표 달성을 돕고 습관 관리</p>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer h-full block">
+                            <input type="radio" name="app_template" value="장소 추천/O2O 매칭 앱" class="template-radio peer sr-only" onchange="handleTemplateChange()" required>
+                            <div class="bg-white rounded-2xl p-5 border-2 border-slate-100 hover:border-blue-200 transition h-full flex flex-col relative">
+                                <div class="absolute top-4 right-4 w-6 h-6 rounded-full border-2 border-slate-200 check-icon hidden items-center justify-center bg-blue-500 border-blue-500">
+                                    <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                </div>
+                                <div class="text-3xl mb-2">📍</div>
+                                <h3 class="text-[15px] font-black text-slate-800 mb-1">장소 추천/O2O 매칭 앱</h3>
+                                <p class="text-[12px] text-slate-500 word-keep">특정 장소를 지도에 띄워 큐레이션</p>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer h-full block">
+                            <input type="radio" name="app_template" value="AI 어학/번역 앱" class="template-radio peer sr-only" onchange="handleTemplateChange()" required>
+                            <div class="bg-white rounded-2xl p-5 border-2 border-slate-100 hover:border-blue-200 transition h-full flex flex-col relative">
+                                <div class="absolute top-4 right-4 w-6 h-6 rounded-full border-2 border-slate-200 check-icon hidden items-center justify-center bg-blue-500 border-blue-500">
+                                    <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                </div>
+                                <div class="text-3xl mb-2">🗣️</div>
+                                <h3 class="text-[15px] font-black text-slate-800 mb-1">AI 어학 / 번역 앱</h3>
+                                <p class="text-[12px] text-slate-500 word-keep">음성 인식(STT)과 인공지능 교육 앱</p>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer h-full block">
+                            <input type="radio" name="app_template" value="쇼핑몰/자사 전용 앱" class="template-radio peer sr-only" onchange="handleTemplateChange()" required>
+                            <div class="bg-white rounded-2xl p-5 border-2 border-slate-100 hover:border-blue-200 transition h-full flex flex-col relative">
+                                <div class="absolute top-4 right-4 w-6 h-6 rounded-full border-2 border-slate-200 check-icon hidden items-center justify-center bg-blue-500 border-blue-500">
+                                    <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                </div>
+                                <div class="text-3xl mb-2">👗</div>
+                                <h3 class="text-[15px] font-black text-slate-800 mb-1">쇼핑몰 / 자사 전용 앱</h3>
+                                <p class="text-[12px] text-slate-500 word-keep">기존 웹사이트를 앱으로 감싼 하이브리드</p>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer h-full block">
+                            <input type="radio" name="app_template" value="영업/고객 관리 앱 (CRM)" class="template-radio peer sr-only" onchange="handleTemplateChange()" required>
+                            <div class="bg-white rounded-2xl p-5 border-2 border-slate-100 hover:border-blue-200 transition h-full flex flex-col relative">
+                                <div class="absolute top-4 right-4 w-6 h-6 rounded-full border-2 border-slate-200 check-icon hidden items-center justify-center bg-blue-500 border-blue-500">
+                                    <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                </div>
+                                <div class="text-3xl mb-2">💼</div>
+                                <h3 class="text-[15px] font-black text-slate-800 mb-1">영업/고객 관리 앱(CRM)</h3>
+                                <p class="text-[12px] text-slate-500 word-keep">고객 정보나 현장 기록을 모바일로 처리</p>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer h-full block">
+                            <input type="radio" name="app_template" value="수면 유도/오디오 앱" class="template-radio peer sr-only" onchange="handleTemplateChange()" required>
+                            <div class="bg-white rounded-2xl p-5 border-2 border-slate-100 hover:border-blue-200 transition h-full flex flex-col relative">
+                                <div class="absolute top-4 right-4 w-6 h-6 rounded-full border-2 border-slate-200 check-icon hidden items-center justify-center bg-blue-500 border-blue-500">
+                                    <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                </div>
+                                <div class="text-3xl mb-2">🎧</div>
+                                <h3 class="text-[15px] font-black text-slate-800 mb-1">수면 유도 / 오디오 앱</h3>
+                                <p class="text-[12px] text-slate-500 word-keep">화면을 꺼도 멈추지 않는 백그라운드 앱</p>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer h-full block">
+                            <input type="radio" name="app_template" value="다이어트/식단 기록 앱" class="template-radio peer sr-only" onchange="handleTemplateChange()" required>
+                            <div class="bg-white rounded-2xl p-5 border-2 border-slate-100 hover:border-blue-200 transition h-full flex flex-col relative">
+                                <div class="absolute top-4 right-4 w-6 h-6 rounded-full border-2 border-slate-200 check-icon hidden items-center justify-center bg-blue-500 border-blue-500">
+                                    <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                </div>
+                                <div class="text-3xl mb-2">🥗</div>
+                                <h3 class="text-[15px] font-black text-slate-800 mb-1">다이어트 / 식단 기록 앱</h3>
+                                <p class="text-[12px] text-slate-500 word-keep">음식 사진과 메모를 내 폰에 기록</p>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer h-full block">
+                            <input type="radio" name="app_template" value="현장 점검/업무 일지 앱" class="template-radio peer sr-only" onchange="handleTemplateChange()" required>
+                            <div class="bg-white rounded-2xl p-5 border-2 border-slate-100 hover:border-blue-200 transition h-full flex flex-col relative">
+                                <div class="absolute top-4 right-4 w-6 h-6 rounded-full border-2 border-slate-200 check-icon hidden items-center justify-center bg-blue-500 border-blue-500">
+                                    <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                </div>
+                                <div class="text-3xl mb-2">📋</div>
+                                <h3 class="text-[15px] font-black text-slate-800 mb-1">현장 점검 / 업무 일지 앱</h3>
+                                <p class="text-[12px] text-slate-500 word-keep">현장 사진 촬영 및 점검 항목 체크</p>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer h-full block">
+                            <input type="radio" name="app_template" value="매장 전용/카탈로그 앱" class="template-radio peer sr-only" onchange="handleTemplateChange()" required>
+                            <div class="bg-white rounded-2xl p-5 border-2 border-slate-100 hover:border-blue-200 transition h-full flex flex-col relative">
+                                <div class="absolute top-4 right-4 w-6 h-6 rounded-full border-2 border-slate-200 check-icon hidden items-center justify-center bg-blue-500 border-blue-500">
+                                    <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                </div>
+                                <div class="text-3xl mb-2">📱</div>
+                                <h3 class="text-[15px] font-black text-slate-800 mb-1">매장 전용 / 카탈로그 앱</h3>
+                                <p class="text-[12px] text-slate-500 word-keep">오프라인 매장 전시용 상품 목록 앱</p>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer h-full block">
+                            <input type="radio" name="app_template" value="나만의 앱만들기" class="template-radio peer sr-only" onchange="handleTemplateChange()" required>
+                            <div class="bg-slate-50 rounded-2xl p-5 border-2 border-slate-200 hover:border-blue-200 transition h-full flex flex-col relative border-dashed">
+                                <div class="absolute top-4 right-4 w-6 h-6 rounded-full border-2 border-slate-200 check-icon hidden items-center justify-center bg-blue-500 border-blue-500">
+                                    <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                </div>
+                                <div class="text-3xl mb-2">🛠️</div>
+                                <h3 class="text-[15px] font-black text-slate-800 mb-1">나만의 앱 만들기</h3>
+                                <p class="text-[12px] text-slate-500 word-keep">원하는 기능들을 직접 조합하여 처음부터 구성</p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8" id="package-section">
+                    <div class="flex items-center gap-3 mb-6">
+                        <img src="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%232563EB'/%3E%3Ctext x='16' y='21.5' font-family='Arial, sans-serif' font-size='16' font-weight='bold' fill='white' text-anchor='middle'%3E2%3C/text%3E%3C/svg%3E" class="w-8 h-8 rounded-full shadow-sm" alt="2">
+                        <h2 class="text-xl font-black">패키지를 확인/선택해주세요</h2>
+                    </div>
+                    
+                    <div class="grid lg:grid-cols-3 gap-6 items-stretch">
+                        <label class="cursor-pointer relative h-full block">
+                            <input type="radio" name="package" value="399000" data-level="lite" class="package-radio peer sr-only" onchange="handlePackageSelection(this)" required>
+                            <div class="border-[2px] border-slate-100 rounded-3xl p-8 hover:border-blue-200 transition h-full flex flex-col relative bg-white text-center">
+                                <div class="absolute top-4 right-4 w-6 h-6 rounded-full border-2 border-slate-200 check-icon hidden items-center justify-center bg-blue-500 border-blue-500 z-20">
+                                    <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                </div>
+                                <div class="flex items-center justify-center gap-2 mb-3 mt-2">
+                                    <div class="text-green-500 text-2xl">🔰</div>
+                                    <h3 class="text-xl font-black">Lite</h3>
+                                </div>
+                                <p class="text-[13px] font-medium text-slate-500 mb-6 min-h-[40px] word-keep">단일 목적의 가장 기본인 앱</p>
+                                <div class="text-[36px] font-black mb-8 tracking-tight">399,000<span class="text-lg font-medium text-slate-400 ml-1.5">원</span></div>
+                                <div class="flex-1 text-left">
+                                    <ul class="space-y-3 text-[14px] text-slate-700 font-bold">
+                                        <li class="flex items-center gap-2"><span class="text-green-500 text-lg">✓</span> 최대 2화면</li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-green-500 text-lg mt-0.5">✓</span>
+                                            <span><strong class="text-green-600">[기록 및 목록]<br>[앱꾸미기]</strong><br>블록 중 2개 혜택 (무료)</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="cursor-pointer relative h-full block">
+                            <input type="radio" name="package" value="599000" data-level="standard" class="package-radio peer sr-only" onchange="handlePackageSelection(this)">
+                            <div class="border-[2px] border-slate-100 rounded-3xl p-8 hover:border-blue-200 transition h-full flex flex-col relative bg-white text-center">
+                                <div class="absolute top-4 right-4 w-6 h-6 rounded-full border-2 border-slate-200 check-icon hidden items-center justify-center bg-blue-500 border-blue-500 z-20">
+                                    <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                </div>
+                                <div class="flex items-center justify-center gap-2 mb-3 mt-2">
+                                    <div class="text-blue-500 text-2xl">🚀</div>
+                                    <h3 class="text-xl font-black text-blue-600">Standard</h3>
+                                </div>
+                                <p class="text-[13px] font-medium text-slate-500 mb-6 min-h-[40px] word-keep">기능과 디자인이 포함된 표준 앱</p>
+                                <div class="text-[36px] font-black mb-8 tracking-tight text-blue-900">599,000<span class="text-lg font-medium text-slate-400 ml-1.5">원</span></div>                    
+                                <div class="flex-1 text-left">
+                                    <ul class="space-y-3 text-[14px] text-slate-700 font-bold">
+                                        <li class="flex items-center gap-2"><span class="text-blue-500 text-lg">✓</span> 최대 4화면</li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-blue-500 text-lg mt-0.5">✓</span>
+                                            <span><strong class="text-blue-600">[기록 및 목록]<br>[스마트폰 기능]<br>[앱꾸미기]<br></strong>블록 중 4개 혜택 (무료)</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="cursor-pointer relative h-full block">
+                            <input type="radio" name="package" value="1490000" data-level="premium" class="package-radio peer sr-only" onchange="handlePackageSelection(this)">
+                            <div class="border-[2px] border-slate-100 rounded-3xl p-8 hover:border-blue-200 transition h-full flex flex-col relative bg-white text-center">
+                                <div class="absolute top-4 right-4 w-6 h-6 rounded-full border-2 border-slate-200 check-icon hidden items-center justify-center bg-blue-500 border-blue-500 z-20">
+                                    <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                </div>
+                                <div class="flex items-center justify-center gap-2 mb-3 mt-2">
+                                    <div class="text-purple-500 text-2xl">✨</div>
+                                    <h3 class="text-xl font-black">AI Premium</h3>
+                                </div>
+                                <p class="text-[13px] font-medium text-slate-500 mb-6 min-h-[40px] word-keep">AI 기능이 포함된 고급 앱</p>
+                                <div class="text-[36px] font-black mb-8 tracking-tight">1,490,000<span class="text-lg font-medium text-slate-400 ml-1.5">원</span></div>                   
+                                <div class="flex-1 text-left">
+                                    <ul class="space-y-3 text-[14px] text-slate-700 font-bold flex-grow">
+                                        <li class="flex items-center gap-2"><span class="text-purple-500 text-lg">✓</span> 최대 6화면</li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-purple-500 text-lg mt-0.5">✓</span>
+                                            <span><strong class="text-purple-600">[🤖 AI 기능]</strong><br>100만원 상당 블럭 무료</span>
+                                        </li>                        
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-purple-500 text-lg mt-0.5">✓</span>
+                                            <span><strong class="text-purple-600">[기록 및 목록]<br>[스마트폰 기능]<br>[앱꾸미기]<br></strong>블록 중 4개 혜택 (무료)</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
+                    <div class="flex justify-between items-end mb-6">
+                        <div>
+                            <div class="flex items-center gap-3 mb-2">
+                                <img src="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%232563EB'/%3E%3Ctext x='16' y='21.5' font-family='Arial, sans-serif' font-size='16' font-weight='bold' fill='white' text-anchor='middle'%3E3%3C/text%3E%3C/svg%3E" class="w-8 h-8 rounded-full shadow-sm" alt="3">
+                                <h2 class="text-xl font-black">필요한 기능 블록(옵션)을 조립해주세요</h2>
+                            </div>
+                            <p class="text-sm text-slate-500">선택하신 앱 템플릿에 맞춰 기본 옵션이 자동 체크되며 자유롭게 수정 가능합니다.</p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-[16px] font-black text-slate-800 mb-3 mt-6">📝 1. 기록 및 목록 (+10만원)</h3>
+                    <div class="grid grid-cols-2 lg:grid-cols-5 gap-3">
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_memo" class="peer sr-only option-checkbox" data-price="100000" data-category="record" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">📝</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">메모 / 글 저장</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_memo_price">+10만원</p></div></label>
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_gallery" class="peer sr-only option-checkbox" data-price="100000" data-category="record" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">🖼️</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">사진(갤러리)</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_gallery_price">+10만원</p></div></label>
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_checklist" class="peer sr-only option-checkbox" data-price="100000" data-category="record" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">✅</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">체크리스트</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_checklist_price">+10만원</p></div></label>
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_calendar" class="peer sr-only option-checkbox" data-price="100000" data-category="record" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">📅</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">일정 관리(달력)</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_calendar_price">+10만원</p></div></label>
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_list" class="peer sr-only option-checkbox" data-price="100000" data-category="record" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">📜</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">리스트 보기</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_list_price">+10만원</p></div></label>
+                    </div>
+
+                    <h3 class="text-[16px] font-black text-slate-800 mb-3 mt-8">📱 2. 스마트폰 기능</h3>
+                    <div class="grid grid-cols-2 lg:grid-cols-5 gap-3">
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_camera" class="peer sr-only option-checkbox" data-price="200000" data-category="smartphone" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">📸</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">카메라 촬영</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_camera_price">+20만원</p></div></label>
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_voice_record" class="peer sr-only option-checkbox" data-price="100000" data-category="smartphone" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">🔴</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">음성녹음</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_voice_record_price">+10만원</p></div></label>
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_media_play" class="peer sr-only option-checkbox" data-price="200000" data-category="smartphone" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">📺</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">동영상/음악 재생</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_media_play_price">+20만원</p></div></label>
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_qr_scan" class="peer sr-only option-checkbox" data-price="200000" data-category="smartphone" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">🔳</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">QR/바코드 인식</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_qr_scan_price">+20만원</p></div></label>
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_qr_gen" class="peer sr-only option-checkbox" data-price="200000" data-category="smartphone" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">🔳</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">QR/바코드 생성</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_qr_gen_price">+20만원</p></div></label>
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_call" class="peer sr-only option-checkbox" data-price="100000" data-category="smartphone" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">📞</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">전화/문자 연결</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_call_price">+10만원</p></div></label>
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_weblink" class="peer sr-only option-checkbox" data-price="100000" data-category="smartphone" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">🔗</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">웹사이트 연결</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_weblink_price">+10만원</p></div></label>
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_contact" class="peer sr-only option-checkbox" data-price="100000" data-category="smartphone" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">📰</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">전화번호 목록</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_contact_price">+10만원</p></div></label>
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_location" class="peer sr-only option-checkbox" data-price="200000" data-category="smartphone" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">📍</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">현재 위치(지도)</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_location_price">+20만원</p></div></label>
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_act" class="peer sr-only option-checkbox" data-price="200000" data-category="smartphone" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">🏃‍♂️</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">신체 활동량</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_act_price">+20만원</p></div></label>
+                    </div>
+
+                    <h3 class="text-[16px] font-black text-slate-800 mb-3 mt-8">🤖 3. AI 및 스마트 기능</h3>
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_ai_chat" class="peer sr-only option-checkbox" data-price="1000000" data-category="ai" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">💬</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">AI 상담 (챗봇)</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_ai_chat_price">+100만원</p></div></label>
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_ai_reco" class="peer sr-only option-checkbox" data-price="1000000" data-category="ai" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">💡</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">AI 추천/분석</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_ai_reco_price">+100만원</p></div></label>
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_stt" class="peer sr-only option-checkbox" data-price="500000" data-category="ai" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">🎙️</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">음성→글자(STT)</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_stt_price">+50만원</p></div></label>
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_translate" class="peer sr-only option-checkbox" data-price="500000" data-category="ai" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">🌐</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">언어 번역</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_translate_price">+50만원</p></div></label>
+                    </div>
+
+                    <h3 class="text-[16px] font-black text-slate-800 mb-3 mt-8">✨ 4. 앱 꾸미기 (화면 추가시 +10만원)</h3>
+                    <div class="grid grid-cols-2 lg:grid-cols-5 gap-3">
+                        <div class="h-full flex flex-col items-center justify-start p-4 border-2 border-[#4F46E5] bg-[#EEF2FF] rounded-xl shadow-sm transition text-center col-span-2 sm:col-span-1 relative z-10">
+                            <div class="absolute top-4 right-4 w-5 h-5 rounded-full bg-[#4F46E5] flex items-center justify-center">
+                                <svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <div class="text-2xl mb-1">📱</div>
+                            <h4 class="text-[13px] font-bold text-slate-800 mb-2">화면 구성</h4>
+                            <div class="flex items-center justify-center gap-1 mb-1 bg-white px-2 py-1 rounded-lg border border-slate-200">
+                                <span class="text-[12px] font-bold text-slate-600">최대</span>
+                                <input type="number" id="screen_count" value="2" readonly class="w-6 text-center font-black text-sm bg-transparent outline-none">
+                                <span class="text-[12px] font-bold text-slate-600">화면</span>
+                                <div class="flex flex-col ml-1 gap-px">
+                                    <button type="button" onclick="changeScreenCount(1)" class="w-5 h-4 flex items-center justify-center bg-slate-200 hover:bg-blue-500 hover:text-white transition rounded-t text-[11px] font-bold leading-none">+</button>
+                                    <button type="button" onclick="changeScreenCount(-1)" class="w-5 h-4 flex items-center justify-center bg-slate-200 hover:bg-red-500 hover:text-white transition rounded-b text-[11px] font-bold leading-none">-</button>
+                                </div>
+                            </div>
+                            <p class="text-[12px] text-blue-500 font-black mt-1 price-label" id="opt_screen_price">기본 포함</p>
+                        </div>
+
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_splash" class="peer sr-only option-checkbox" data-price="100000" data-category="decorate" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">✨</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">시작 화면</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_splash_price">+10만원</p></div></label>
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_tab" class="peer sr-only option-checkbox" data-price="100000" data-category="decorate" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">👇</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">하단 메뉴(탭)</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_tab_price">+10만원</p></div></label>
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_swipe" class="peer sr-only option-checkbox" data-price="100000" data-category="decorate" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">↔️</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">화면 넘기기</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_swipe_price">+10만원</p></div></label>
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_guide" class="peer sr-only option-checkbox" data-price="100000" data-category="decorate" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">📖</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">첫 실행 안내</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_guide_price">+10만원</p></div></label>
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_font" class="peer sr-only option-checkbox" data-price="100000" data-category="decorate" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">🖌</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">폰트 적용</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_font_price">+10만원</p></div></label>
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_progressbar" class="peer sr-only option-checkbox" data-price="100000" data-category="decorate" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">⏹️</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">프로그래스바</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_progressbar_price">+10만원</p></div></label>
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_icon" class="peer sr-only option-checkbox" data-price="100000" data-category="decorate" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">🎨</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">아이콘</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_icon_price">+10만원</p></div></label>
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_webview" class="peer sr-only option-checkbox" data-price="100000" data-category="decorate" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">📲</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">웹사이트 감싸기</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_webview_price">+10만원</p></div></label>
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_dummy_data" class="peer sr-only option-checkbox" data-price="100000" data-category="decorate" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">💬</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">피칭 데이터 입력</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_dummy_data_price">+10만원</p></div></label>
+                    </div>
+
+                    <h3 class="text-[16px] font-black text-slate-800 mb-3 mt-8">🚀 5. 프리미엄 기능</h3>
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_bg" class="peer sr-only option-checkbox" data-price="400000" data-category="premium" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">🔄</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">화면 꺼져도 실행</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_bg_price">+40만원</p></div></label>
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_overlay" class="peer sr-only option-checkbox" data-price="400000" data-category="premium" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">📑</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">다른 앱 위에 표시</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_overlay_price">+40만원</p></div></label>
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_noti_read" class="peer sr-only option-checkbox" data-price="400000" data-category="premium" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">📩</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">알림 읽기</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_noti_read_price">+40만원</p></div></label>
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_secure" class="peer sr-only option-checkbox" data-price="400000" data-category="premium" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">🛡️</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">캡처/녹화 방지</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_secure_price">+40만원</p></div></label>
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_push" class="peer sr-only option-checkbox" data-price="200000" data-category="premium" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">🔔</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">알림 띄우기</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_push_price">+20만원</p></div></label>
+                        <label class="cursor-pointer"><input type="checkbox" id="opt_boot" class="peer sr-only option-checkbox" data-price="200000" data-category="premium" onchange="calculateTotal()"><div class="h-full flex flex-col items-center justify-start p-4 border-2 border-slate-100 rounded-xl bg-white transition text-center"><div class="text-2xl mb-1">🔌</div><h4 class="text-[13px] font-bold text-slate-800 mb-1">부팅 시 자동 실행</h4><p class="text-[12px] text-slate-400 font-black mb-1 price-label" id="opt_boot_price">+20만원</p></div></label>
+                    </div>
+
+                    <div class="mt-8 bg-slate-50 border border-slate-200 rounded-xl p-6 flex flex-col md:flex-row items-center justify-between">
+                        <div>
+                            <h4 class="font-bold text-slate-700 text-lg">견적 금액</h4>
+                            <p class="text-[14px] text-slate-500 mt-1">패키지 기본 제공 혜택은 자동으로 금액이 0원 처리됩니다.</p>
+                        </div>
+                        <div class="mt-4 md:mt-0 text-right flex flex-col items-end">
+                            <div class="text-sm font-bold text-slate-500 mb-1">총 금액</div>
+                            <div class="text-3xl font-black text-blue-600" id="totalPriceDisplay">0<span class="text-lg font-bold text-slate-600 ml-1">원</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <img src="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%232563EB'/%3E%3Ctext x='16' y='21.5' font-family='Arial, sans-serif' font-size='16' font-weight='bold' fill='white' text-anchor='middle'%3E4%3C/text%3E%3C/svg%3E" class="w-8 h-8 rounded-full shadow-sm" alt="4">
+                        <h2 class="text-xl font-black">프로젝트에 대해 알려주세요</h2>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">앱 이름 <span class="text-red-500">*</span></label>
+                            <input type="text" name="project_appname" id="project_appname" placeholder="예) 운동할래" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition text-sm" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">앱(프로젝트) 제목 <span class="text-red-500">*</span></label>
+                            <input type="text" name="project_title" id="project_title" placeholder="예) AI 운동 코치 앱" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition text-sm" required>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-1 gap-6 mb-6">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">앱(프로젝트) 한 줄 설명 <span class="text-red-500">*</span></label>
+                            <input type="text" name="project_desc" placeholder="예) 사용자의 운동 데이터를 분석하여 맞춤 추천" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition text-sm" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label class="block text-sm font-bold text-slate-700 mb-2">앱의 주요 목적 / 기능을 상세히 설명해주세요 <span class="text-red-500">*</span></label>
+                        <textarea rows="4" name="project_detail" placeholder="예) 사용자가 걸음 수를 기록하면 AI가 분석하여 운동 목표와 추천 운동을 제공하는 앱입니다." class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition text-sm resize-none" required></textarea>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">참고할 만한 앱이나 서비스가 있나요?</label>
+                            <input type="text" name="project_ref" placeholder="예) 삼성 헬스, Fitbit, Nike Run Club" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">참고 이미지 / 스케치 (선택)</label>
+                            
+                            <div onclick="document.getElementById('project_file').click()" class="w-full px-4 py-3 rounded-lg border border-dashed border-slate-300 bg-slate-50 text-center cursor-pointer hover:bg-slate-100 transition h-full flex flex-col justify-center min-h-[46px]">
+                                <span id="file_status" class="text-sm text-slate-500 font-medium">☁️ 여기를 클릭하여 파일을 첨부해주세요</span>
+                            </div>
+                            <input type="file" id="project_file" name="project_file" accept="image/*,application/pdf" class="hidden" onchange="handleFileChange(this)">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="px-4 sm:px-8 w-full">
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <img src="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%232563EB'/%3E%3Ctext x='16' y='21.5' font-family='Arial, sans-serif' font-size='16' font-weight='bold' fill='white' text-anchor='middle'%3E5%3C/text%3E%3C/svg%3E" class="w-8 h-8 rounded-full shadow-sm" alt="5">
+                        <h2 class="text-xl font-black">연락처 정보를 입력해주세요</h2>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">이름 <span class="text-red-500">*</span></label>
+                            <input type="text" name="user_name" placeholder="홍길동" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition text-sm" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">이메일 <span class="text-red-500">*</span></label>
+                            <input type="email" name="user_email" placeholder="example@gmail.com" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition text-sm" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">어떤 경로로 오셨나요?</label>
+                            <select name="user_route" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition text-sm bg-white">
+                                <option value="">선택해주세요</option>
+                                <option value="검색 (네이버, 구글)">검색 (네이버, 구글)</option>
+                                <option value="블로그/카페">블로그/카페</option>
+                                <option value="지인 추천">지인 추천</option>
+                                <option value="기타">기타</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="action-buttons" class="flex flex-col-reverse md:flex-row items-center justify-between gap-4 pt-4 px-4 sm:px-8">
+                <button type="button" id="btn-back" onclick="handleGoBack()" class="w-full md:w-auto px-10 py-4 rounded-xl border border-slate-300 text-slate-600 font-bold hover:bg-slate-50 transition">
+                    이전
+                </button>
+                
+                <div class="flex flex-col md:flex-row items-center gap-3 w-full md:w-auto">
+                    <div class="text-[13px] font-medium text-slate-500 bg-slate-100 px-4 py-2 rounded-lg flex items-center gap-2 mb-3 md:mb-0">
+                        🔒 입력하신 정보는 안전하게 보호됩니다.
+                    </div>
+                    <button type="button" id="btn-download" onclick="handleDownload()" class="w-full md:w-auto bg-slate-800 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-slate-700 transition shadow-lg whitespace-nowrap">
+                        견적 내려받기 ⬇️
+                    </button>
+                    <button type="button" id="btn-submit" onclick="handleSubmit()" class="w-full md:w-auto bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-10 py-4 rounded-xl font-black text-lg hover:opacity-90 transition shadow-lg shadow-indigo-500/30 whitespace-nowrap">
+                        무료 시안 3종 요청하기 →
+                    </button>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <div id="successModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center">
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeAndRedirect()"></div>
+        
+        <div class="bg-white rounded-3xl p-10 max-w-sm w-full mx-4 relative z-10 text-center shadow-2xl transform transition-all scale-100 opacity-100">
+            <div class="w-20 h-20 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <h3 class="text-2xl font-black text-slate-800 mb-3">무료 시안 3종<br>요청 완료!</h3>
+            <p class="text-[14px] text-slate-500 mb-8 leading-relaxed">입력하신 이메일로 24시간 이내에<br>맞춤형 시안을 보내드리겠습니다.</p>
+            <h4 class="text-2xl font-black text-slate-800 mb-3">다운로드된 견적서를 확인하세요</h4>
+            <button onclick="closeAndRedirect()" class="w-full bg-indigo-600 text-white font-bold text-lg py-4 rounded-xl hover:bg-indigo-700 transition shadow-md shadow-indigo-500/20">
+                확인
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function handleFileChange(input) {
+            const statusEl = document.getElementById('file_status');
+            
+            if (input.files && input.files[0]) {
+                const file = input.files[0];
+                const maxSize = 3 * 1024 * 1024; // 3MB (바이트 단위)
+
+                if (file.size > maxSize) {
+                    alert("첨부파일 용량은 3MB를 초과할 수 없습니다.\n현재 파일 크기: " + (file.size / (1024 * 1024)).toFixed(2) + "MB");
+                    input.value = ""; // 파일 선택 초기화
+                    statusEl.innerText = '☁️ 파일 첨부 기능은 웹에서 진행해주세요';
+                    statusEl.classList.add('text-slate-500');
+                    statusEl.classList.remove('text-blue-600', 'font-bold');
+                    return;
+                }
+
+                statusEl.innerText = `📄 ${file.name}`;
+                statusEl.classList.remove('text-slate-500');
+                statusEl.classList.add('text-blue-600', 'font-bold');
+            } else {
+                statusEl.innerText = '☁️ 파일 첨부 기능은 웹에서 진행해주세요';
+                statusEl.classList.add('text-slate-500');
+                statusEl.classList.remove('text-blue-600', 'font-bold');
+            }
+        }
+
+        function handleTemplateChange() {
+            const templateData = {
+                "운동/루틴 관리 앱": { package: "standard", options: ["opt_checklist", "opt_calendar", "opt_act", "opt_tab"] },
+                "장소 추천/O2O 매칭 앱": { package: "standard", options: ["opt_location", "opt_list", "opt_tab", "opt_gallery"] },
+                "AI 어학/번역 앱": { package: "premium", options: ["opt_memo", "opt_list", "opt_stt", "opt_translate", "opt_tab", "opt_swipe"] },
+                "쇼핑몰/자사 전용 앱": { package: "standard", options: ["opt_webview", "opt_splash", "opt_tab", "opt_swipe", "opt_push"] },
+                "영업/고객 관리 앱 (CRM)": { package: "standard", options: ["opt_memo", "opt_call", "opt_calendar", "opt_contact"] },
+                "수면 유도/오디오 앱": { package: "standard", options: ["opt_bg", "opt_checklist", "opt_list", "opt_media_play", "opt_tab"] },
+                "다이어트/식단 기록 앱": { package: "standard", options: ["opt_camera", "opt_gallery", "opt_calendar", "opt_tab"] },
+                "현장 점검/업무 일지 앱": { package: "standard", options: ["opt_camera", "opt_checklist","opt_calendar", "opt_memo"] },
+                "매장 전용/카탈로그 앱": { package: "standard", options: ["opt_gallery", "opt_list", "opt_swipe", "opt_splash"] },
+                "나만의 앱만들기": { package: null, options: [] }
+            };
+
+            const selectedTemplate = document.querySelector('input[name="app_template"]:checked').value;
+            const data = templateData[selectedTemplate];
+
+            document.querySelectorAll('.package-radio').forEach(r => r.checked = false);
+            document.querySelectorAll('.option-checkbox').forEach(c => c.checked = false);
+
+            if (data && data.package) {
+                const pkgRadio = document.querySelector(`input[name="package"][data-level="${data.package}"]`);
+                if (pkgRadio) {
+                    pkgRadio.checked = true;
+                    let input = document.getElementById('screen_count');
+                    if (data.package === 'lite') input.value = 2;
+                    else if (data.package === 'standard') input.value = 4;
+                    else if (data.package === 'premium') input.value = 6;
+                }
+                
+                data.options.forEach(optId => {
+                    const optCheckbox = document.getElementById(optId);
+                    if (optCheckbox) optCheckbox.checked = true;
+                });
+            }
+            calculateTotal();
+        }
+
+        function handlePackageSelection(radio) {
+            const level = radio.dataset.level;
+            let input = document.getElementById('screen_count');
+
+            document.querySelectorAll('.option-checkbox').forEach(c => c.checked = false);
+
+            if (level === 'lite') {
+                input.value = 2;
+                ['opt_memo', 'opt_tab'].forEach(id => {
+                    const opt = document.getElementById(id);
+                    if(opt) opt.checked = true;
+                });
+            } 
+            else if (level === 'standard') {
+                input.value = 4;
+                ['opt_memo', 'opt_list', 'opt_tab', 'opt_swipe'].forEach(id => {
+                    const opt = document.getElementById(id);
+                    if(opt) opt.checked = true;
+                });
+            } 
+            else if (level === 'premium') {
+                input.value = 6;
+                ['opt_memo', 'opt_list', 'opt_tab', 'opt_swipe', 'opt_ai_chat'].forEach(id => {
+                    const opt = document.getElementById(id);
+                    if(opt) opt.checked = true;
+                });
+            }
+            calculateTotal();
+        }
+
+        function changeScreenCount(delta) {
+            let input = document.getElementById('screen_count');
+            let current = parseInt(input.value);
+            let pkg = document.querySelector('input[name="package"]:checked');
+            
+            if (!pkg) {
+                alert("패키지를 먼저 선택해주세요.");
+                return;
+            }
+            
+            let newVal = current + delta;
+            if (newVal < 1) newVal = 1; 
+            input.value = newVal;
+            calculateTotal();
+        }
+
+        function calculateTotal() {
+            let total = 0;
+            const selectedPackage = document.querySelector('input[name="package"]:checked');
+            const optionCheckboxes = document.querySelectorAll('.option-checkbox');
+
+            optionCheckboxes.forEach(cb => {
+                const basePrice = parseInt(cb.dataset.price);
+                const priceEl = document.getElementById(cb.id + "_price");
+                if(priceEl) {
+                    priceEl.innerText = "+" + (basePrice / 10000) + "만원";
+                    priceEl.className = "text-[12px] font-black mb-1 text-slate-400 price-label";
+                }
+            });
+
+            let screenPriceEl = document.getElementById('opt_screen_price');
+            if (screenPriceEl) {
+                screenPriceEl.innerText = "기본 포함";
+                screenPriceEl.className = "text-[12px] text-blue-500 font-black mt-1 price-label";
+            }
+
+            if (!selectedPackage) {
+                document.getElementById('totalPriceDisplay').innerHTML = '0<span class="text-lg font-bold text-slate-600 ml-1">원</span>';
+                return;
+            }
+
+            const level = selectedPackage.dataset.level;
+            total += parseInt(selectedPackage.value);
+
+            let input = document.getElementById('screen_count');
+            let currentScreens = parseInt(input.value);
+            let baseScreens = level === 'lite' ? 2 : (level === 'standard' ? 4 : 6);
+            let extraScreens = Math.max(0, currentScreens - baseScreens);
+            let screenCost = extraScreens * 100000;
+            
+            total += screenCost;
+            
+            if (screenPriceEl && extraScreens > 0) {
+                screenPriceEl.innerText = "+" + (screenCost / 10000) + "만원";
+                screenPriceEl.className = "text-[12px] font-black mt-1 text-indigo-500 price-label";
+            }
+
+            let generalPool = 0;
+            let aiDiscountRemaining = 0;
+            let generalEligibleCats = [];
+
+            if (level === 'lite') {
+                generalPool = 2;
+                generalEligibleCats = ['record', 'decorate'];
+            } else if (level === 'standard') {
+                generalPool = 4;
+                generalEligibleCats = ['record', 'decorate', 'smartphone'];
+            } else if (level === 'premium') {
+                generalPool = 4;
+                generalEligibleCats = ['record', 'decorate', 'smartphone'];
+                aiDiscountRemaining = 1000000; 
+            }
+
+            let checkedOptions = Array.from(optionCheckboxes).filter(cb => cb.checked);
+            checkedOptions.sort((a, b) => parseInt(b.dataset.price) - parseInt(a.dataset.price));
+
+            checkedOptions.forEach(cb => {
+                const basePrice = parseInt(cb.dataset.price);
+                const cat = cb.dataset.category;
+                const priceEl = document.getElementById(cb.id + "_price");
+                let isFree = false;
+
+                if (cat === 'ai' && aiDiscountRemaining >= basePrice) {
+                    isFree = true;
+                    aiDiscountRemaining -= basePrice;
+                } else if (generalPool > 0 && generalEligibleCats.includes(cat)) {
+                    isFree = true;
+                    generalPool--;
+                }
+
+                if (isFree) {
+                    if(priceEl) {
+                        priceEl.innerText = "+0원 (혜택)";
+                        priceEl.className = "text-[12px] font-black mb-1 text-blue-500 price-label";
+                    }
+                } else {
+                    total += basePrice;
+                    if(priceEl) {
+                        priceEl.innerText = "+" + (basePrice / 10000) + "만원";
+                        priceEl.className = "text-[12px] font-black mb-1 text-indigo-500 price-label";
+                    }
+                }
+            });
+
+            document.getElementById('totalPriceDisplay').innerHTML = total.toLocaleString() + '<span class="text-lg font-bold text-slate-600 ml-1">원</span>';
+        }
+
+        function handleGoBack() {
+            if(confirm("선택된 내용이 사라집니다. 홈페이지로 이동하시겠습니까?")) {
+                location.href = 'index.html';
+            }
+        }
+
+        function validateForm() {
+            const form = document.getElementById('requestForm');
+            
+            if (!form.checkValidity()) {
+                alert("필수 항목이 비어 있습니다.\n별표(*)로 표시된 모든 항목을 입력 및 선택해 주세요.");
+                form.reportValidity();
+                return false;
+            }
+
+            // 💡 파일 용량 최종 검증 (3MB 제한)
+            const fileInput = document.getElementById('project_file');
+            if (fileInput.files && fileInput.files[0]) {
+                const file = fileInput.files[0];
+                const maxSize = 3 * 1024 * 1024; // 3MB
+                if (file.size > maxSize) {
+                    alert("첨부파일 용량은 3MB를 초과할 수 없습니다. 파일을 다시 확인해 주세요.");
+                    fileInput.focus();
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        function handleDownload() {
+            if (validateForm()) {
+                downloadPDF(false);
+            }
+        }
+
+        // 💡 Make.com 연동 및 데이터 전송을 포함한 제출 함수
+        async function handleSubmit() {
+            if (validateForm()) {
+                const btnSubmit = document.getElementById('btn-submit');
+                const btnDownload = document.getElementById('btn-download');
+                const originalText = btnSubmit.innerHTML;
+                
+                btnSubmit.innerHTML = '⏳ 데이터 전송 중...';
+                btnSubmit.disabled = true;
+                btnDownload.disabled = true;
+
+                // 1. Make.com으로 폼 데이터 전송 
+                const isSuccess = await sendToMake();
+
+                if (isSuccess) {
+                    // 2. 전송 성공 시 PDF 다운로드 및 성공 모달 실행
+                    await downloadPDF(true); 
+                } else {
+                    alert("데이터 전송 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
+                    btnSubmit.innerHTML = originalText;
+                    btnSubmit.disabled = false;
+                    btnDownload.disabled = false;
+                }
+            }
+        }
+
+        // 1. 💡 무료 시안 요청하기 버튼 클릭 시 (PDF 생성 후 전송으로 흐름 변경)
+        async function handleSubmit() {
+            if (validateForm()) {
+                const btnSubmit = document.getElementById('btn-submit');
+                const btnDownload = document.getElementById('btn-download');
+                const originalText = btnSubmit.innerHTML;
+                
+                // 버튼 상태 변경 (로딩 중)
+                btnSubmit.innerHTML = '⏳ 견적서 생성 및 전송 중...';
+                btnSubmit.disabled = true;
+                btnDownload.disabled = true;
+
+                // 백그라운드에서 PDF를 먼저 생성하여 파일(Blob) 형태로 반환받기
+                const pdfBlob = await downloadPDF(true); 
+
+                if (pdfBlob) {
+                    // 생성된 견적서 PDF 파일을 함께 실어서 Make.com으로 데이터 전송
+                    const isSuccess = await sendToMake(pdfBlob);
+
+                    if (isSuccess) {
+                        // 전송 성공 시 성공 모달 띄우기 (다운로드는 별도로 시키지 않음)
+                        const modal = document.getElementById('successModal');
+                        modal.classList.remove('hidden');
+                    } else {
+                        alert("데이터 전송 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
+                    }
+                } else {
+                    alert("견적서 생성 중 오류가 발생했습니다.");
+                }
+
+                btnSubmit.innerHTML = originalText;
+                btnSubmit.disabled = false;
+                btnDownload.disabled = false;
+            }
+        }
+
+        // 2. 💡 Make.com Webhook 데이터 전송 함수
+        async function sendToMake(pdfBlob) {
+            // 대표님의 실제 Make.com 웹훅 주소
+            const webhookUrl = "https://hook.eu1.make.com/m3edka6vc2d3sqkys660vmaatnx8cyyu"; 
+            
+            const form = document.getElementById('requestForm');
+            const formData = new FormData(form);
+
+            // 고객이 수동으로 업로드한 참고 파일 확인
+            // 💡 고객이 수동으로 업로드한 참고 파일 이름 변경하여 전송
+            const fileInput = document.getElementById('project_file');
+            if (fileInput.files.length > 0) {
+                const originalFile = fileInput.files[0];
+                
+                // 시간 및 고객명 가져오기 (견적서 파일명과 동일한 규칙 적용)
+                const userName = formData.get("user_name") || "고객"; 
+                const now = new Date();
+                const timeString = now.getFullYear() + 
+                                   String(now.getMonth() + 1).padStart(2, '0') + 
+                                   String(now.getDate()).padStart(2, '0') + 
+                                   String(now.getHours()).padStart(2, '0') + 
+                                   String(now.getMinutes()).padStart(2, '0') + 
+                                   String(now.getSeconds()).padStart(2, '0');
+
+                // 확장자 추출 (예: .pdf, .png 등)
+                const fileExt = originalFile.name.substring(originalFile.name.lastIndexOf('.'));
+                const pureFileName = originalFile.name.substring(0, originalFile.name.lastIndexOf('.'));
+
+                // 새로운 파일명 조합: 년월일시분초_7APP_고객명_원래파일명.확장자
+                const newFileName = `${timeString}_7APP_${userName}_${pureFileName}${fileExt}`;
+
+                // 새 이름이 적용된 파일 객체(File)를 생성하여 폼 데이터에 세팅
+                const renamedFile = new File([originalFile], newFileName, { type: originalFile.type });
+                formData.set("project_file", renamedFile);
+            }
+
+            // 총 견적 금액 추출하여 전송 (콤마, 원 제외)
+            const totalPriceText = document.getElementById('totalPriceDisplay').innerText;
+            const numericPrice = totalPriceText.replace(/[^0-9]/g, ''); 
+            formData.append("total_price", numericPrice);
+
+            // 선택된 옵션 항목 수집하여 전송
+            const selectedOptions = Array.from(document.querySelectorAll('.option-checkbox:checked'))
+                .map(cb => cb.nextElementSibling.querySelector('h4').innerText)
+                .join(', ');
+            formData.append("selected_options", selectedOptions);
+
+            // 화면 구성(Screen Count) 전송
+            const screenCount = document.getElementById('screen_count').value;
+            formData.append("screen_count", screenCount);
+
+            // ⭐ 동적으로 생성된 '견적서 PDF 파일'을 폼 데이터에 추가
+            const titleInput = document.getElementById('project_title');
+            const projectTitle = titleInput && titleInput.value.trim() ? titleInput.value.trim() : '앱개발';
+            
+            // 💡 폼 데이터에서 고객 이름을 가져오기 [cite: 177]
+            const userName = formData.get("user_name") || "고객"; 
+            
+            // 💡 현재 시간을 '년월일시분초' 포맷으로 생성 (예: 20260809140530) [cite: 177]
+            const now = new Date();
+            const timeString = now.getFullYear() + 
+                               String(now.getMonth() + 1).padStart(2, '0') + 
+                               String(now.getDate()).padStart(2, '0') + 
+                               String(now.getHours()).padStart(2, '0') + 
+                               String(now.getMinutes()).padStart(2, '0') + 
+                               String(now.getSeconds()).padStart(2, '0');
+
+            // 💡 파일명 조합: 년월일시분초_7APP_고객명_프로젝트명_견적서.pdf [cite: 175, 177]
+            const pdfFileName = `${timeString}_7APP_${userName}_${projectTitle}_견적서.pdf`;
+            
+            // 'quote_pdf'라는 이름으로 견적서 파일 데이터(Blob) 추가 [cite: 104, 109, 177]
+            formData.append("quote_pdf", pdfBlob, pdfFileName);
+
+            try {
+                const response = await fetch(webhookUrl, {
+                    method: 'POST',
+                    body: formData
+                });
+                return response.ok;
+            } catch (error) {
+                console.error('Webhook 전송 오류:', error);
+                return false;
+            }
+        }
+
+        // 3. 💡 PDF 생성 및 다운로드 함수
+        async function downloadPDF(isSubmit = false) {
+            const btnDownload = document.getElementById('btn-download');
+            const btnSubmit = document.getElementById('btn-submit');
+            
+            if(!isSubmit) {
+                btnDownload.innerHTML = '⏳ PDF 생성 중...';
+                btnDownload.disabled = true;
+                btnSubmit.disabled = true;
+            }
+
+            const titleInput = document.getElementById('project_title');
+            const projectTitle = titleInput && titleInput.value.trim() ? titleInput.value.trim() : '';
+            
+            // 💡 견적서 내부의 텍스트 제목도 7APP으로 변경 [cite: 175, 179]
+            const pdfTitleEl = document.getElementById('pdf-title');
+            if (projectTitle) {
+                pdfTitleEl.innerHTML = `7APP <span class="text-blue-600">"${projectTitle}"</span> 앱개발 견적서`;
+            } else {
+                pdfTitleEl.innerText = `7APP 앱개발 견적서`;
+            }
+
+            // 💡 입력된 고객 이름을 가져오기 [cite: 179]
+            const userNameInput = document.querySelector('input[name="user_name"]');
+            const userName = userNameInput && userNameInput.value.trim() ? userNameInput.value.trim() : '고객';
+            
+            // 💡 현재 시간을 '년월일시분초' 포맷으로 생성 [cite: 174, 179]
+            const now = new Date();
+            const timeString = now.getFullYear() + 
+                               String(now.getMonth() + 1).padStart(2, '0') + 
+                               String(now.getDate()).padStart(2, '0') + 
+                               String(now.getHours()).padStart(2, '0') + 
+                               String(now.getMinutes()).padStart(2, '0') + 
+                               String(now.getSeconds()).padStart(2, '0');
+
+            // 💡 파일명 조합: 년월일시분초_7APP_고객명_프로젝트명_견적서.pdf [cite: 175, 179]
+            const fileName = `${timeString}_7APP_${userName}_${projectTitle ? projectTitle : '앱개발'}_견적서.pdf`;
+
+            const tempElements = [];
+            const inputsToReplace = document.querySelectorAll('#pdf-area input[type="text"], #pdf-area input[type="number"], #pdf-area input[type="email"], #pdf-area input[type="tel"], #pdf-area textarea, #pdf-area select');
+
+            inputsToReplace.forEach(el => {
+                let val = el.value;
+                if (el.tagName === 'SELECT') {
+                    val = el.options[el.selectedIndex]?.value ? el.options[el.selectedIndex].text : '';
+                }
+
+                const div = document.createElement('div');
+                div.className = el.className;
+                div.style.minHeight = el.offsetHeight + 'px'; 
+                div.style.boxSizing = 'border-box';
+                div.innerText = val || '\u00A0'; 
+                
+                div.style.display = 'flex';
+                if (el.tagName === 'TEXTAREA') {
+                    div.style.alignItems = 'flex-start'; 
+                    div.style.whiteSpace = 'pre-wrap';
+                } else {
+                    div.style.alignItems = 'center'; 
+                    if (el.type === 'number') div.style.justifyContent = 'center';
+                }
+
+                el.parentNode.insertBefore(div, el);
+                
+                const originalDisplay = el.style.display;
+                el.style.display = 'none'; 
+
+                tempElements.push({ original: el, fake: div, originalDisplay: originalDisplay });
+            });
+
+            const pdfArea = document.getElementById('pdf-area');
+            const pdfHeader = document.getElementById('pdf-header');
+
+            pdfHeader.classList.remove('hidden');
+            window.scrollTo(0, 0);
+
+            const originalWidth = pdfArea.style.width;
+            const originalMaxWidth = pdfArea.style.maxWidth;
+            const originalMargin = pdfArea.style.margin;
+
+            pdfArea.style.width = '1200px';
+            pdfArea.style.maxWidth = '1200px';
+            pdfArea.style.margin = '0 auto';
+
+            await new Promise(r => setTimeout(r, 150));
+
+            try {
+                const canvas = await html2canvas(pdfArea, {
+                    scale: 2,
+                    useCORS: true,
+                    scrollY: 0,
+                    windowWidth: 1200
+                });
+
+                const imgData = canvas.toDataURL('image/jpeg', 1.0);
+                const imgWidth = 210;
+                const pageHeight = (canvas.height * imgWidth) / canvas.width;
+
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF('p', 'mm', [imgWidth, pageHeight]);
+
+                pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, pageHeight);
+                
+                // ⭐ 분기 처리: Make 전송용이면 Blob 반환, 단순 다운로드면 기기에 저장 [cite: 104, 109]
+                if (isSubmit) {
+                    return pdf.output('blob');
+                } else {
+                    pdf.save(fileName); 
+                    return null;
+                }
+
+            } catch (error) {
+                console.error('PDF 생성 중 오류:', error);
+                alert('PDF 생성에 실패했습니다.');
+                return null;
+            } finally {
+                pdfHeader.classList.add('hidden');
+                pdfArea.style.width = originalWidth;
+                pdfArea.style.maxWidth = originalMaxWidth;
+                pdfArea.style.margin = originalMargin;
+
+                tempElements.forEach(item => {
+                    item.original.style.display = item.originalDisplay;
+                    item.fake.remove();
+                });
+
+                if(!isSubmit) {
+                    btnDownload.innerHTML = '견적 내려받기 ⬇️';
+                    btnDownload.disabled = false;
+                    btnSubmit.disabled = false;
+                }
+            }
+        }
+
+        function closeAndRedirect() {
+            location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
