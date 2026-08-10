@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>7APP - 시안 선택 및 의뢰</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script>
+        
+        //                ▼▼▼   노션 아이디를 입력하세요   ▼▼▼
+        const notionId = "3b8eb9c7b91581f2ab55f04a8a0dfee5";        
+        //                ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
+
+        //                ▼▼▼금액입력▼▼▼
+        const totlaprice = "₩399,000";         
+        //                ▲▲▲▲▲▲▲▲▲▲▲▲▲
+
+
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Paperozi', 'sans-serif'] },
+                    colors: {
+                        primary: '#6B46C1', 
+                        secondary: '#4299E1',
+                        dark: '#0F172A',
+                        darker: '#090E17',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-1Thin.woff2') format('woff2'); font-weight: 100; font-display: swap; }
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-3Light.woff2') format('woff2'); font-weight: 300; font-display: swap; }
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-5Medium.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-6SemiBold.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-9Black.woff2') format('woff2'); font-weight: 900; font-display: swap; }
+
+        body { font-family: 'Paperozi', sans-serif; word-break: keep-all; font-weight: 400; letter-spacing: 0.019em; background-color: #F8FAFC; }
+        
+        .hero-gradient { background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 100%); }
+        .word-keep { word-break: keep-all; }
+        
+        /* 라디오 버튼 선택 시 스타일 */
+        input[type="radio"]:checked + div {
+            border-color: #3B82F6; 
+            background-color: #EFF6FF; 
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.1);
+        }
+        input[type="radio"]:checked + div .check-icon {
+            display: flex; 
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased selection:bg-primary selection:text-white relative">
+
+    <!-- [보안 제어] 비인가 사용자용 잠금 화면 -->
+    <div id="lockScreen" class="fixed inset-0 z-[200] bg-dark flex flex-col items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 p-8 rounded-3xl max-w-md w-full text-center shadow-2xl">
+            <div class="text-5xl mb-4">🔒</div>
+            <h2 class="text-white text-2xl font-black mb-3">비공개 시안 페이지</h2>
+            <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                이 페이지는 이메일을 통해 발송된 전용 링크로만 접근할 수 있습니다.<br>
+                접근 암호를 입력해 주세요.
+            </p>
+            <div class="space-y-3">
+                <input type="password" id="passwordInput" placeholder="암호 입력" class="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white text-center text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none">
+                <button onclick="checkPassword()" class="w-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-bold py-3 rounded-xl hover:opacity-90 transition shadow-lg">
+                    확인
+                </button>
+            </div>
+            <p id="lockError" class="text-red-500 text-xs mt-3 hidden">암호가 일치하지 않습니다. 다시 시도해 주세요.</p>
+        </div>
+    </div>
+
+    <!-- 실제 페이지 콘텐츠 -->
+    <div id="mainContent" class="invisible">
+        <!-- 헤더 -->
+        <header class="fixed w-full top-0 z-50 bg-dark/90 backdrop-blur-md border-b border-slate-800 transition-all duration-300">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-center">
+                <div class="flex items-center gap-2 text-white font-black text-xl tracking-tight">
+                    <div class="w-6 h-6 bg-white rotate-45 rounded-sm"></div>
+                    7APP
+                </div>
+            </div>
+        </header>
+
+        <!-- 상단 소개 영역 -->
+        <section class="pt-32 pb-10 bg-white border-b border-slate-100 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-50/50 to-purple-50/50"></div>
+            <div class="max-w-4xl mx-auto px-4 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+                <div class="text-center md:text-left flex-1">
+                    <span class="inline-block py-1.5 px-5 rounded-full bg-blue-100 text-blue-600 text-sm font-bold mb-5 animate-pulse">
+                        시안 선택
+                    </span>
+                    
+                    <h1 class="text-4xl md:text-5xl font-black leading-tight mb-4 text-slate-800 tracking-tight">
+                        시안 선택 및 개발 의뢰
+                    </h1>
+                    
+                    <p class="text-[16px] font-medium text-slate-600 leading-relaxed word-keep">
+                        고객님을 위해 준비된 3가지 무료 시안입니다.<br>
+                        <strong class="text-slate-800">가장 마음에 드는 디자인을 선택하신 후 의뢰를 접수</strong>해 주세요.
+                    </p>
+                </div>
+                
+                <div class="w-48 h-48 md:w-64 md:h-64 shrink-0 relative">
+                     <div class="absolute inset-0 bg-gradient-to-tr from-indigo-500/10 to-purple-500/10 blur-2xl rounded-full"></div>
+                     <lottie-player 
+                        src="https://lottie.host/83592cfe-d13d-4b67-b891-a42de389c04d/oZMcU230Fb.json"
+                        background="transparent" 
+                        speed="1" 
+                        style="width: 100%; height: 100%;" 
+                        loop 
+                        autoplay 
+                        class="relative z-10 drop-shadow-xl hover:scale-[1.02] transition duration-500">
+                    </lottie-player>
+                </div>
+            </div>
+        </section>
+
+        <!-- 메인 폼 영역 -->
+        <section class="py-6">
+            <form id="orderForm" onsubmit="submitForm(event)" class="max-w-5xl mx-auto px-4 space-y-8">
+                
+                <div class="bg-[#F8FAFC] pb-8 pt-4 px-4 sm:px-8 rounded-xl space-y-8">
+                    
+                    <!-- STEP 1: 시안 선택 -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8" data-aos="fade-up">
+                        <div class="flex items-center gap-3 mb-6">
+                            <img src="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%232563EB'/%3E%3Ctext x='16' y='21.5' font-family='Arial, sans-serif' font-size='16' font-weight='bold' fill='white' text-anchor='middle'%3E1%3C/text%3E%3C/svg%3E" class="w-8 h-8 rounded-full shadow-sm" alt="1">
+                            <h2 class="text-xl font-black">시안을 선택해주세요</h2>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <!-- 시안 A -->
+                            <label class="cursor-pointer h-full block group">
+                                <input type="radio" name="design_choice" value="A" class="peer sr-only" required>
+                                <div class="bg-white rounded-2xl p-5 border-2 border-slate-100 hover:border-blue-200 transition h-full flex flex-col relative text-center">
+                                    <div class="absolute top-4 right-4 w-6 h-6 rounded-full border-2 border-slate-200 check-icon hidden items-center justify-center bg-blue-500 border-blue-500 z-10">
+                                        <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                    </div>
+                                    <div class="w-full aspect-[9/18] bg-slate-100 rounded-xl mb-3 overflow-hidden border border-slate-200 relative">
+                                        <img src="img/A.png" alt="시안 A" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                    </div>
+                                    <!-- 확대 아이콘 (버튼) -->
+                                    <button type="button" onclick="openLightbox(event, 'img/A.png')" class="mb-4 flex items-center justify-center gap-2 w-full py-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg text-[13px] font-bold text-slate-600 transition shadow-sm relative z-20">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                                        시안 확대보기
+                                    </button>
+                                    <h3 class="text-[16px] font-black text-slate-800 mb-1">시안 A</h3>
+                                </div>
+                            </label>
+
+                            <!-- 시안 B -->
+                            <label class="cursor-pointer h-full block group">
+                                <input type="radio" name="design_choice" value="B" class="peer sr-only">
+                                <div class="bg-white rounded-2xl p-5 border-2 border-slate-100 hover:border-blue-200 transition h-full flex flex-col relative text-center">
+                                    <div class="absolute top-4 right-4 w-6 h-6 rounded-full border-2 border-slate-200 check-icon hidden items-center justify-center bg-blue-500 border-blue-500 z-10">
+                                        <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                    </div>
+                                    <div class="w-full aspect-[9/18] bg-slate-900 rounded-xl mb-3 overflow-hidden border border-slate-200 relative">
+                                        <img src="img/B.png" alt="시안 B" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                    </div>
+                                    <!-- 확대 아이콘 (버튼) -->
+                                    <button type="button" onclick="openLightbox(event, 'img/B.png')" class="mb-4 flex items-center justify-center gap-2 w-full py-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg text-[13px] font-bold text-slate-600 transition shadow-sm relative z-20">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                                        시안 확대보기
+                                    </button>
+                                    <h3 class="text-[16px] font-black text-slate-800 mb-1">시안 B</h3>
+                                </div>
+                            </label>
+
+                            <!-- 시안 C -->
+                            <label class="cursor-pointer h-full block group">
+                                <input type="radio" name="design_choice" value="C" class="peer sr-only">
+                                <div class="bg-white rounded-2xl p-5 border-2 border-slate-100 hover:border-blue-200 transition h-full flex flex-col relative text-center">
+                                    <div class="absolute top-4 right-4 w-6 h-6 rounded-full border-2 border-slate-200 check-icon hidden items-center justify-center bg-blue-500 border-blue-500 z-10">
+                                        <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                    </div>
+                                    <div class="w-full aspect-[9/18] bg-slate-100 rounded-xl mb-3 overflow-hidden border border-slate-200 relative">
+                                        <img src="img/C.png" alt="시안 C" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                    </div>
+                                    <!-- 확대 아이콘 (버튼) -->
+                                    <button type="button" onclick="openLightbox(event, 'img/C.png')" class="mb-4 flex items-center justify-center gap-2 w-full py-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg text-[13px] font-bold text-slate-600 transition shadow-sm relative z-20">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                                        시안 확대보기
+                                    </button>
+                                    <h3 class="text-[16px] font-black text-slate-800 mb-1">시안 C</h3>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2: 결제 및 안내사항 -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8" data-aos="fade-up" data-aos-delay="100">
+                        <div class="flex items-center gap-3 mb-6">
+                            <img src="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%232563EB'/%3E%3Ctext x='16' y='21.5' font-family='Arial, sans-serif' font-size='16' font-weight='bold' fill='white' text-anchor='middle'%3E2%3C/text%3E%3C/svg%3E" class="w-8 h-8 rounded-full shadow-sm" alt="2">
+                            <h2 class="text-xl font-black">결제 정보 및 안내</h2>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <!-- 계좌 정보 및 입금자명 입력 -->
+                            <div class="p-6 border border-slate-100 rounded-xl bg-slate-50/50">
+                                <h3 class="text-[14px] font-bold text-slate-500 mb-5 flex items-center gap-2">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                                    무통장 입금 계좌
+                                </h3>
+                                <div class="space-y-4">
+                                    <div>
+                                        <p class="text-[12px] text-slate-400 font-bold mb-1">은행명</p>
+                                        <p class="text-[16px] font-black text-slate-800">카카오뱅크</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-[12px] text-slate-400 font-bold mb-1">계좌번호</p>
+                                        <div class="flex items-center gap-3">
+                                            <p class="text-xl font-black text-blue-600 tracking-wider font-mono">3333-00-1234567</p>
+                                            <button type="button" onclick="copyAccount()" class="px-3 py-1 bg-white border border-slate-200 rounded text-xs font-bold text-slate-600 hover:bg-slate-100 transition shadow-sm">복사</button>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="text-[12px] text-slate-400 font-bold mb-1">예금주</p>
+                                        <p class="text-[16px] font-black text-slate-800">이효연</p>
+                                    </div>
+
+                                    
+                                    <!-- 추가된 입금자명 입력란 -->
+                                    <div class="pt-4 mt-2 border-t border-slate-200/60">
+
+                                        <!-- 결제 금액 표시 영역 -->
+                                        <div class="mb-4">
+                                            <p class="block text-[12px] text-slate-500 font-bold mb-1">결제 금액</p>
+                                            <div class="flex items-center">
+                                                <p class="text-[18px] font-black text-rose-600"><span id="priceDisplay"></span>원</p>
+                                            </div>
+                                        </div>
+
+                                        <label for="depositor_name" class="block text-[12px] text-slate-500 font-bold mb-2">입금자명 (확인용)</label>
+                                        <div class="relative">
+                                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                                            </div>
+                                            <input type="text" id="depositor_name" name="depositor_name" required placeholder="입금하시는 분 성함" class="w-full pl-10 pr-4 py-2.5 bg-white border border-slate-200 rounded-lg text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition shadow-sm">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 안내사항 -->
+                            <div class="flex flex-col justify-center">
+                                <div class="bg-[#FFF1F2] border border-rose-100 rounded-xl p-5 relative mb-4">
+                                    <h4 class="font-bold text-rose-700 mb-2 flex items-center gap-2">
+                                        <span class="w-5 h-5 bg-rose-200 text-rose-700 rounded-full flex items-center justify-center text-[12px] font-black">!</span>
+                                        증빙 발급 안내
+                                    </h4>
+                                    <p class="text-[13px] text-rose-700/80 leading-relaxed word-keep font-medium">
+                                        합리적인 단가 제공을 위해 현재 프리랜서(개인) 형태로 프로젝트를 진행하고 있습니다.<br>
+                                        이에 따라 <strong class="text-rose-600 font-bold border-b border-rose-300">세금계산서 및 현금영수증 발급은 불가</strong>하오니 양해 부탁드립니다.
+                                    </p>
+                                </div>
+                                
+                                <div class="flex items-center gap-2 text-[13px] text-slate-600 font-medium px-2">
+                                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                    문의: <a href="mailto:7app.kr@gmail.com" class="text-blue-600 font-bold hover:underline">7app.kr@gmail.com</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 하단 액션 버튼 -->
+                <div class="flex flex-col items-center justify-center pt-6 px-4 sm:px-8 pb-10" data-aos="fade-up" data-aos-delay="200">
+                    <button type="submit" id="btn-submit" class="w-full md:w-auto bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-12 py-5 rounded-2xl font-black text-xl hover:opacity-90 transition shadow-xl shadow-indigo-500/30 whitespace-nowrap transform hover:-translate-y-1">
+                        선택한 시안으로 의뢰하기 →
+                    </button>
+                    <p class="mt-4 text-[13px] text-slate-500 font-medium bg-slate-100 px-4 py-2 rounded-lg">
+                        🔒 클릭 시 접수가 완료되며, 이후 입금 확인 절차가 진행됩니다.
+                    </p>
+                </div>
+                
+            </form>
+        </section>
+
+        <!-- 성공 팝업 모달 -->
+        <div id="successModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeModal()"></div>
+            
+            <div class="bg-white rounded-3xl p-10 max-w-sm w-full mx-4 relative z-10 text-center shadow-2xl transform transition-all scale-100 opacity-100">
+                <div class="w-20 h-20 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <h3 class="text-2xl font-black text-slate-800 mb-3">의뢰 접수 완료!</h3>
+                <p class="text-[14px] text-slate-500 mb-8 leading-relaxed">
+                    선택하신 시안으로 의뢰가 접수되었습니다.<br>
+                    <strong class="text-slate-700">입금이 확인되는 대로</strong> 작업을 시작합니다.
+                </p>
+                <button onclick="closeModal()" class="w-full bg-indigo-600 text-white font-bold text-lg py-4 rounded-xl hover:bg-indigo-700 transition shadow-md shadow-indigo-500/20">
+                    확인
+                </button>
+            </div>
+        </div>
+
+        
+
+        <!-- 성공 팝업 모달 -->
+        <div id="alreadyrequestedModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeModal()"></div>
+            
+            <div class="bg-white rounded-3xl p-10 max-w-sm w-full mx-4 relative z-10 text-center shadow-2xl transform transition-all scale-100 opacity-100">
+                <div class="w-20 h-20 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <h3 class="text-2xl font-black text-slate-800 mb-3">중복 요청!</h3>
+                <p class="text-[14px] text-slate-500 mb-8 leading-relaxed">
+                    이미 접수된 요청입니다.<br>                    
+                </p>
+                <button onclick="closeModal()" class="w-full bg-indigo-600 text-white font-bold text-lg py-4 rounded-xl hover:bg-indigo-700 transition shadow-md shadow-indigo-500/20">
+                    확인
+                </button>
+            </div>
+        </div>
+
+        <!-- 이미지 확대 라이트박스 모달 -->
+        <div id="lightboxModal" class="fixed inset-0 z-[300] hidden flex items-center justify-center bg-slate-900/90 backdrop-blur-sm opacity-0 transition-opacity duration-300" onclick="closeLightbox()">
+            <div class="relative w-full max-w-4xl p-4 flex flex-col items-center justify-center transform scale-95 transition-transform duration-300" id="lightboxContent" onclick="event.stopPropagation()">
+                <!-- 닫기 버튼 -->
+                <button type="button" onclick="closeLightbox()" class="absolute -top-10 right-4 md:right-0 w-10 h-10 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition backdrop-blur-md">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+                <img id="lightboxImage" src="" alt="확대된 시안" class="max-h-[85vh] w-auto rounded-xl shadow-2xl object-contain border border-slate-700">
+            </div>
+        </div>
+
+        <!-- 푸터 -->
+        <footer class="bg-dark text-slate-400 py-8 border-t border-slate-800 text-center relative z-10">
+            <p class="text-[13px] font-light">© 7APP. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        const VALID_TOKEN = "7app"; 
+        const VALID_PASSWORD = "7app";  
+
+        document.addEventListener("DOMContentLoaded", function() {
+            AOS.init({ once: true, offset: 50 });
+
+            const priceEl = document.getElementById('priceDisplay');
+            if (priceEl) {
+                priceEl.innerText = totlaprice;
+            }
+            
+            const urlParams = new URLSearchParams(window.location.search);
+            const token = urlParams.get('token');
+
+            if (token === VALID_TOKEN) {
+                unlockPage();
+            }
+        });
+
+        function checkPassword() {
+            const input = document.getElementById('passwordInput').value;
+            const errorEl = document.getElementById('lockError');
+
+            if (input === VALID_PASSWORD) {
+                unlockPage();
+            } else {
+                errorEl.classList.remove('hidden');
+            }
+        }
+
+        function unlockPage() {
+            document.getElementById('lockScreen').classList.add('hidden');
+            document.getElementById('mainContent').classList.remove('invisible');
+        }
+
+        function copyAccount() {
+            navigator.clipboard.writeText('3333001234567').then(() => {
+                alert('계좌번호가 복사되었습니다.');
+            });
+        }
+
+        // 라이트박스 열기
+        function openLightbox(event, imgSrc) {
+            // 부모 label 태그의 기본 동작(라디오버튼 선택)을 막습니다.
+            event.preventDefault();
+            event.stopPropagation();
+            
+            const modal = document.getElementById('lightboxModal');
+            const img = document.getElementById('lightboxImage');
+            const content = document.getElementById('lightboxContent');
+            
+            img.src = imgSrc;
+            
+            modal.classList.remove('hidden');
+            
+            // display:block 적용 후 transition 활성화
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                content.classList.remove('scale-95');
+            }, 10);
+        }
+
+        // 라이트박스 닫기
+        function closeLightbox() {
+            const modal = document.getElementById('lightboxModal');
+            const content = document.getElementById('lightboxContent');
+            
+            modal.classList.add('opacity-0');
+            content.classList.add('scale-95');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.getElementById('lightboxImage').src = "";
+            }, 300);
+        }
+
+        async function submitForm(event) {
+            event.preventDefault();
+            
+            const form = document.getElementById('orderForm');
+            
+            // 1. 고객 입력 데이터 수집
+            const formData = new FormData(form);
+            const designChoice = formData.get('design_choice');
+            const depositorName = formData.get('depositor_name');
+            
+            // 2. 항목별 유효성 직접 검사
+            if (!designChoice) {
+                alert("가장 마음에 드는 시안을 선택해 주세요.");
+                return;
+            }
+            
+            if (!depositorName || depositorName.trim() === "") {
+                alert("입금자명을 입력해 주세요.");
+                document.getElementById('depositor_name').focus();
+                return;
+            }
+
+            // 3. 버튼 상태 변경 (로딩 효과)
+            const submitBtn = document.getElementById('btn-submit');
+            const originalText = submitBtn.innerText;
+            submitBtn.innerText = "의뢰 접수 중...";
+            submitBtn.disabled = true;
+
+            try {
+                // 4. Make.com 웹훅으로 데이터 전송 및 응답(response) 받기
+                const webhookUrl = "https://hook.eu1.make.com/kr0wkc1r2nmkua58ijc4g49joxcr4lrf";
+                
+                const response = await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        notion_id: notionId,       
+                        design: designChoice,      
+                        name: depositorName,       
+                        dev_request: "요청",  
+                        totlaprice: totlaprice
+                    })
+                });
+
+                // 5. Make에서 보낸 웹훅 응답 텍스트 확인
+                const result = await response.text();
+
+                // 6. 결과에 따른 분기 처리
+                if (result.trim() === "already_requested") {                    
+                    const amodal = document.getElementById('alreadyrequestedModal');
+                    amodal.classList.remove('hidden');    
+                } else {
+                    const modal = document.getElementById('successModal');
+                    modal.classList.remove('hidden');
+                }
+                
+            } catch (error) {
+                console.error(error); // 콘솔에서 정확한 에러 확인용
+                alert("네트워크 오류가 발생했습니다. 다시 시도해주세요.");
+            } finally {
+                submitBtn.innerText = originalText;
+                submitBtn.disabled = false;
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('successModal');
+            modal.classList.add('hidden');
+            window.location.href = "https://7app.kr";
+        }
+    </script>
+</body>
+</html>
