@@ -771,8 +771,7 @@
         }
 
 
-
-        // 1. 💡 무료 시안 요청하기 버튼 클릭 시 (PDF 생성 후 전송으로 흐름 변경)
+        // 1. 무료 시안 요청하기 버튼 클릭 시 실행되는 함수 bb
         async function handleSubmit() {
             if (validateForm()) {
                 const btnSubmit = document.getElementById('btn-submit');
@@ -784,15 +783,15 @@
                 btnSubmit.disabled = true;
                 btnDownload.disabled = true;
 
-                // 백그라운드에서 PDF를 먼저 생성하여 파일(Blob) 형태로 반환받기
+                // PDF를 생성하여 Blob 형태로 받아옴
                 const pdfBlob = await downloadPDF(true); 
 
                 if (pdfBlob) {
-                    // 생성된 견적서 PDF 파일을 함께 실어서 Make.com으로 데이터 전송
+                    // 생성된 PDF Blob을 인자로 전달하여 Make.com으로 전송
                     const isSuccess = await sendToMake(pdfBlob);
 
                     if (isSuccess) {
-                        // 전송 성공 시 성공 모달 띄우기 (다운로드는 별도로 시키지 않음)
+                        // 전송 성공 시 모달 띄우기
                         const modal = document.getElementById('successModal');
                         modal.classList.remove('hidden');
                     } else {
@@ -808,21 +807,17 @@
             }
         }
 
-        // 2. 💡 Make.com Webhook 데이터 전송 함수
+        // 2. Make.com Webhook 데이터 전송 함수 (pdfBlob을 전달받아 폼 데이터에 첨부)
         async function sendToMake(pdfBlob) {
-            // 대표님의 실제 Make.com 웹훅 주소
             const webhookUrl = "https://hook.eu1.make.com/m3edka6vc2d3sqkys660vmaatnx8cyyu"; 
             
             const form = document.getElementById('requestForm');
             const formData = new FormData(form);
 
-            // 고객이 수동으로 업로드한 참고 파일 확인
-            // 💡 고객이 수동으로 업로드한 참고 파일 이름 변경하여 전송
+            // 첨부파일 이름 변경 처리
             const fileInput = document.getElementById('project_file');
             if (fileInput.files.length > 0) {
                 const originalFile = fileInput.files[0];
-                
-                // 시간 및 고객명 가져오기 (견적서 파일명과 동일한 규칙 적용)
                 const userName = formData.get("user_name") || "고객"; 
                 const now = new Date();
                 const timeString = now.getFullYear() + 
@@ -832,41 +827,32 @@
                                    String(now.getMinutes()).padStart(2, '0') + 
                                    String(now.getSeconds()).padStart(2, '0');
 
-                // 확장자 추출 (예: .pdf, .png 등)
                 const fileExt = originalFile.name.substring(originalFile.name.lastIndexOf('.'));
                 const pureFileName = originalFile.name.substring(0, originalFile.name.lastIndexOf('.'));
-
-                // 새로운 파일명 조합: 년월일시분초_7APP_고객명_원래파일명.확장자
                 const newFileName = `${timeString}_7APP_${userName}_${pureFileName}${fileExt}`;
 
-                // 새 이름이 적용된 파일 객체(File)를 생성하여 폼 데이터에 세팅
                 const renamedFile = new File([originalFile], newFileName, { type: originalFile.type });
                 formData.set("project_file", renamedFile);
             }
 
-            // 총 견적 금액 추출하여 전송 (콤마, 원 제외)
+            // 총 금액 및 선택 옵션 수집
             const totalPriceText = document.getElementById('totalPriceDisplay').innerText;
             const numericPrice = totalPriceText.replace(/[^0-9]/g, ''); 
             formData.append("total_price", numericPrice);
 
-            // 선택된 옵션 항목 수집하여 전송
             const selectedOptions = Array.from(document.querySelectorAll('.option-checkbox:checked'))
                 .map(cb => cb.nextElementSibling.querySelector('h4').innerText)
                 .join(', ');
             formData.append("selected_options", selectedOptions);
 
-            // 화면 구성(Screen Count) 전송
             const screenCount = document.getElementById('screen_count').value;
             formData.append("screen_count", screenCount);
 
-            // ⭐ 동적으로 생성된 '견적서 PDF 파일'을 폼 데이터에 추가
+            // PDF 파일명 조합
             const titleInput = document.getElementById('project_title');
             const projectTitle = titleInput && titleInput.value.trim() ? titleInput.value.trim() : '앱개발';
-            
-            // 💡 폼 데이터에서 고객 이름을 가져오기 [cite: 177]
             const userName = formData.get("user_name") || "고객"; 
             
-            // 💡 현재 시간을 '년월일시분초' 포맷으로 생성 (예: 20260809140530) [cite: 177]
             const now = new Date();
             const timeString = now.getFullYear() + 
                                String(now.getMonth() + 1).padStart(2, '0') + 
@@ -875,10 +861,9 @@
                                String(now.getMinutes()).padStart(2, '0') + 
                                String(now.getSeconds()).padStart(2, '0');
 
-            // 💡 파일명 조합: 년월일시분초_7APP_고객명_프로젝트명_견적서.pdf [cite: 175, 177]
             const pdfFileName = `${timeString}_7APP_${userName}_${projectTitle}_견적서.pdf`;
             
-            // 'quote_pdf'라는 이름으로 견적서 파일 데이터(Blob) 추가 [cite: 104, 109, 177]
+            // ⭐ 전달받은 pdfBlob을 quote_pdf 이름으로 폼 데이터에 추가
             formData.append("quote_pdf", pdfBlob, pdfFileName);
 
             try {
@@ -996,11 +981,14 @@
 
                 pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, pageHeight);
                 
+
                 // ⭐ 분기 처리: Make 전송용이면 Blob 반환, 단순 다운로드면 기기에 저장 [cite: 104, 109]
+                
+                pdf.save(fileName); 
+                
                 if (isSubmit) {
                     return pdf.output('blob');
                 } else {
-                    pdf.save(fileName); 
                     return null;
                 }
 
