@@ -770,31 +770,7 @@
             }
         }
 
-        // 💡 Make.com 연동 및 데이터 전송을 포함한 제출 함수
-        async function handleSubmit() {
-            if (validateForm()) {
-                const btnSubmit = document.getElementById('btn-submit');
-                const btnDownload = document.getElementById('btn-download');
-                const originalText = btnSubmit.innerHTML;
-                
-                btnSubmit.innerHTML = '⏳ 데이터 전송 중...';
-                btnSubmit.disabled = true;
-                btnDownload.disabled = true;
 
-                // 1. Make.com으로 폼 데이터 전송 
-                const isSuccess = await sendToMake();
-
-                if (isSuccess) {
-                    // 2. 전송 성공 시 PDF 다운로드 및 성공 모달 실행
-                    await downloadPDF(true); 
-                } else {
-                    alert("데이터 전송 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
-                    btnSubmit.innerHTML = originalText;
-                    btnSubmit.disabled = false;
-                    btnDownload.disabled = false;
-                }
-            }
-        }
 
         // 1. 💡 무료 시안 요청하기 버튼 클릭 시 (PDF 생성 후 전송으로 흐름 변경)
         async function handleSubmit() {
