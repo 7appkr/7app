@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>7APP - 안드로이드 프로토타입 앱 전문 개발</title>
-
+    
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18381690833"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -14,22 +14,8 @@
       gtag('config', 'AW-18381690833');
     </script>
     
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Paperozi', 'sans-serif'] },
-                    colors: {
-                        primary: '#6B46C1', 
-                        secondary: '#4299E1',
-                        dark: '#0F172A',
-                        darker: '#090E17',
-                    }
-                }
-            }
-        }
-    </script>
+
+    <link rel="stylesheet" href="style.css">
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
@@ -78,9 +64,9 @@
         .masonry-item { break-inside: avoid; margin-bottom: 1.5rem; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased selection:bg-primary selection:text-white font-normal">
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-[#6B46C1] selection:text-white font-normal">
 
-    <header class="fixed w-full top-0 z-50 bg-dark/90 backdrop-blur-md border-b border-slate-800 transition-all duration-300">
+    <header class="fixed w-full top-0 z-50 bg-[#0F172A]/90 backdrop-blur-md border-b border-slate-800 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div class="flex items-center gap-2 text-white font-black text-xl tracking-tight">
                 <div class="w-6 h-6 bg-white rotate-45 rounded-sm"></div>
@@ -92,11 +78,13 @@
                 <a href="#pricing" class="hover:text-white transition">상품 안내</a>
                 <a href="#portfolio" class="hover:text-white transition">포트폴리오</a>
                 <a href="#faq" class="hover:text-white transition">서비스 범위</a>
+                <a href="./blog/main.html" class="hover:text-white transition">블로그</a>
             </nav>
-            <button onclick="location.href='request.html'" 
-                class="hidden md:block bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-5 py-2 rounded-full text-sm font-bold hover:opacity-90 transition shadow-lg shadow-primary/30">
+            <!-- 🚨 버튼 태그를 <a> 태그로 변경하여 크롤링 봇이 정상 인식하도록 수정 -->
+            <a href="request.html" 
+                class="hidden md:flex items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-5 py-2 rounded-full text-sm font-bold hover:opacity-90 transition shadow-lg shadow-[#6B46C1]/30">
                 무료 시안 3종 받기 →
-            </button>
+            </a>
         </div>
     </header>
 
@@ -124,10 +112,11 @@
                     <div class="flex items-center gap-2"><span class="text-blue-400">💻</span> 100% 소스코드 제공</div>
                 </div>
                 <div class="flex flex-wrap gap-4">
-                    <button onclick="location.href='request.html'" 
-                        class="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-8 py-4 rounded-xl font-bold text-lg hover:opacity-90 transition shadow-lg shadow-indigo-500/30 w-full sm:w-auto">
+                    <!-- 🚨 버튼 태그를 <a> 태그로 변경 -->
+                    <a href="request.html" 
+                        class="inline-block text-center bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-8 py-4 rounded-xl font-bold text-lg hover:opacity-90 transition shadow-lg shadow-indigo-500/30 w-full sm:w-auto">
                         무료 시안 3종 받기 →
-                    </button>
+                    </a>
                     <a href="#templates" class="px-8 py-4 rounded-xl font-bold text-lg border border-slate-600 hover:bg-slate-800 transition flex items-center justify-center w-full sm:w-auto">
                         템플릿 먼저 보기
                     </a>
@@ -1002,11 +991,12 @@
                     <h2 class="text-3xl font-black mb-5">지금 바로<br>무료 시안을 받아보세요!</h2>
                     <p class="text-indigo-100 mb-10 font-light text-lg">24시간 이내 시안을 이메일로 보내드립니다.</p>
                     
-                    <button onclick="location.href='request.html'"
-                        class="bg-white text-indigo-600 px-10 py-4 rounded-xl font-black text-lg hover:bg-slate-50 transition shadow-xl">
+                    <!-- 🚨 버튼 태그를 <a> 태그로 변경 -->
+                    <a href="request.html"
+                        class="inline-block bg-white text-indigo-600 px-10 py-4 rounded-xl font-black text-lg hover:bg-slate-50 transition shadow-xl">
                         무료 시안 3종 받기 →
-                    </button>
-                    </div>
+                    </a>
+                </div>
                 <div class="absolute top-0 left-0 w-64 h-64 bg-white opacity-5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
                 <div class="absolute bottom-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
             </div>
@@ -1030,6 +1020,7 @@
                     <li><a href="#pricing" class="hover:text-white transition">상품 안내</a></li>                    
                     <li><a href="#portfolio" class="hover:text-white transition">포트폴리오</a></li>
                     <li><a href="#faq" class="hover:text-white transition">서비스 범위</a></li>
+                    <li><a href="./blog/main.html" class="hover:text-white transition">블로그</a></li>
                 </ul>
             </div>
             <div>
