@@ -28,23 +28,8 @@
       gtag('config', 'AW-18381690833');
     </script>
 
-    <!-- Tailwind CSS & Custom Config -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Paperozi', 'sans-serif'] },
-                    colors: {
-                        primary: '#6B46C1', 
-                        secondary: '#4299E1',
-                        dark: '#0F172A',
-                        darker: '#090E17',
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- 정적 CSS 연결 (Tailwind CDN 제거) -->
+    <link rel="stylesheet" href="../style.css">
 
     <!-- Paperlogy (Paperozi) Web Fonts -->
     <style>
@@ -84,26 +69,26 @@
     }
     </script>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased selection:bg-primary selection:text-white font-normal">
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-[#6B46C1] selection:text-white font-normal">
 
-    <!-- index.html 상단 고정 헤더 -->
-    <header class="fixed w-full top-0 z-50 bg-dark/90 backdrop-blur-md border-b border-slate-800 transition-all duration-300">
+    <!-- 상단 고정 헤더 -->
+    <header class="fixed w-full top-0 z-50 bg-[#0F172A]/90 backdrop-blur-md border-b border-slate-800 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <a href="https://7app.kr" class="flex items-center gap-2 text-white font-black text-xl tracking-tight">
+            <a href="../index.html" class="flex items-center gap-2 text-white font-black text-xl tracking-tight">
                 <div class="w-6 h-6 bg-white rotate-45 rounded-sm"></div>
                 7APP
             </a>
             <nav class="hidden md:flex gap-8 text-sm text-slate-300 font-medium">
-                <a href="https://7app.kr/#templates" class="hover:text-white transition">앱 템플릿</a>
-                <a href="https://7app.kr/#blocks" class="hover:text-white transition">기능 조립</a>
-                <a href="https://7app.kr/#pricing" class="hover:text-white transition">상품 안내</a>
-                <a href="https://7app.kr/#portfolio" class="hover:text-white transition">포트폴리오</a>
-                <a href="https://7app.kr/#faq" class="hover:text-white transition">서비스 범위</a>
+                <a href="../index.html#templates" class="hover:text-white transition">앱 템플릿</a>
+                <a href="../index.html#blocks" class="hover:text-white transition">기능 조립</a>
+                <a href="../index.html#pricing" class="hover:text-white transition">상품 안내</a>
+                <a href="../index.html#portfolio" class="hover:text-white transition">포트폴리오</a>
+                <a href="../index.html#faq" class="hover:text-white transition">서비스 범위</a>
             </nav>
-            <button onclick="location.href='https://7app.kr/request.html'" 
-                class="hidden md:block bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-5 py-2 rounded-full text-sm font-bold hover:opacity-90 transition shadow-lg shadow-primary/30">
+            <a href="../request.html" 
+                class="hidden md:flex items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-5 py-2 rounded-full text-sm font-bold hover:opacity-90 transition shadow-lg shadow-[#6B46C1]/30">
                 무료 시안 3종 받기 →
-            </button>
+            </a>
         </div>
     </header>
 
@@ -270,17 +255,17 @@
                     <p class="text-indigo-100 font-light text-sm sm:text-base word-keep">
                         종이 기획서는 이제 그만, 심사위원을 설득할 실물 프로토타입이 필요합니다.<br>아이디어만 남겨주시면 24시간 이내에 무료 시안 3종을 보내드립니다.
                     </p>
-                    <button onclick="location.href='https://7app.kr/request.html'"
+                    <a href="../request.html"
                         class="bg-white text-indigo-600 px-9 py-4 rounded-xl font-black text-base hover:bg-slate-50 transition shadow-lg inline-block">
                         무료 시안 3종 받기 →
-                    </button>
+                    </a>
                 </div>
             </div>
 
         </article>
     </main>
 
-    <!-- index.html 푸터 -->
+    <!-- 푸터 -->
     <footer class="bg-[#0B0F19] text-slate-400 py-12 border-t border-slate-800 mt-16">
         <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-8">
             <div class="col-span-1 md:col-span-2">
@@ -293,11 +278,11 @@
             <div>
                 <h4 class="text-white font-bold mb-4">서비스</h4>
                 <ul class="space-y-2 text-[13px] font-light">
-                    <li><a href="https://7app.kr/#templates" class="hover:text-white transition">앱 템플릿</a></li>
-                    <li><a href="https://7app.kr/#blocks" class="hover:text-white transition">기능 조립</a></li>
-                    <li><a href="https://7app.kr/#pricing" class="hover:text-white transition">상품 안내</a></li>                   
-                    <li><a href="https://7app.kr/#portfolio" class="hover:text-white transition">포트폴리오</a></li>
-                    <li><a href="https://7app.kr/#faq" class="hover:text-white transition">서비스 범위</a></li>
+                    <li><a href="../index.html#templates" class="hover:text-white transition">앱 템플릿</a></li>
+                    <li><a href="../index.html#blocks" class="hover:text-white transition">기능 조립</a></li>
+                    <li><a href="../index.html#pricing" class="hover:text-white transition">상품 안내</a></li>                   
+                    <li><a href="../index.html#portfolio" class="hover:text-white transition">포트폴리오</a></li>
+                    <li><a href="../index.html#faq" class="hover:text-white transition">서비스 범위</a></li>
                 </ul>
             </div>
             <div>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7APP 개발·창업 블로그 | 안드로이드 프로토타입 인사이트</title>
+    
+    <meta name="description" content="정부지원사업, IR 피칭, 안드로이드 실물 프로토타입 앱 제작 노하우와 스타트업 검증 가이드를 제공합니다.">
+    <meta name="keywords" content="7APP 블로그, 정부지원사업 앱, 예비창업패키지, 스타트업 프로토타입, 앱 개발 가이드">
+    <meta name="author" content="7APP">
+    <link rel="canonical" href="https://7app.kr/blog/index.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="7APP 개발·창업 블로그">
+    <meta property="og:description" content="아이디어 검증부터 정부지원사업 시연까지, 실물 앱 프로토타입 제작 인사이트를 확인하세요.">
+    <meta property="og:image" content="https://7app.kr/og-image.png">
+    <meta property="og:url" content="https://7app.kr/blog/index.html">
+    <meta property="og:site_name" content="7APP">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18381690833"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-18381690833');
+    </script>
+
+    <link rel="stylesheet" href="../style.css">
+
+    <style>
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-1Thin.woff2') format('woff2'); font-weight: 100; font-display: swap; }
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-2ExtraLight.woff2') format('woff2'); font-weight: 200; font-display: swap; }
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-3Light.woff2') format('woff2'); font-weight: 300; font-display: swap; }
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-5Medium.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-6SemiBold.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-8ExtraBold.woff2') format('woff2'); font-weight: 800; font-display: swap; }
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-9Black.woff2') format('woff2'); font-weight: 900; font-display: swap; }
+
+        body { font-family: 'Paperozi', sans-serif; word-break: keep-all; font-weight: 400; letter-spacing: 0.019em; }
+        .hero-gradient { background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 100%); }
+        .cta-gradient { background: linear-gradient(90deg, #4F46E5 0%, #9333EA 100%); }
+        .word-keep { word-break: keep-all; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-[#6B46C1] selection:text-white font-normal">
+
+    <header class="fixed w-full top-0 z-50 bg-[#0F172A]/90 backdrop-blur-md border-b border-slate-800 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="../index.html" class="flex items-center gap-2 text-white font-black text-xl tracking-tight">
+                <div class="w-6 h-6 bg-white rotate-45 rounded-sm"></div>
+                7APP
+            </a>
+            <nav class="hidden md:flex gap-8 text-sm text-slate-300 font-medium">
+                <a href="../index.html#templates" class="hover:text-white transition">앱 템플릿</a>
+                <a href="../index.html#blocks" class="hover:text-white transition">기능 조립</a>
+                <a href="../index.html#pricing" class="hover:text-white transition">상품 안내</a>
+                <a href="../index.html#portfolio" class="hover:text-white transition">포트폴리오</a>
+                <a href="../index.html#faq" class="hover:text-white transition">서비스 범위</a>
+            </nav>
+            <a href="../request.html" 
+                class="hidden md:flex items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-5 py-2 rounded-full text-sm font-bold hover:opacity-90 transition shadow-lg shadow-[#6B46C1]/30">
+                무료 시안 3종 받기 →
+            </a>
+        </div>
+    </header>
+
+    <section class="hero-gradient pt-32 pb-16 text-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center">
+            <span class="bg-indigo-500/30 border border-indigo-400/50 text-indigo-100 px-3 py-1 rounded-full text-[12px] font-bold inline-block mb-4">
+                7APP INSIGHTS
+            </span>
+            <h1 class="text-3xl md:text-5xl font-black leading-tight mb-4">
+                개발·창업 블로그
+            </h1>
+            <p class="text-base sm:text-lg font-light text-slate-300 max-w-2xl mx-auto leading-relaxed">
+                정부지원사업 합격 전략부터 실물 프로토타입 제작 가이드까지 핵심 노하우를 정리했습니다.
+            </p>
+        </div>
+    </section>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 py-12">
+        <div class="mb-10 pb-4 border-b border-slate-200 flex items-center justify-between">
+            <h2 class="text-xl sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+                <span>📚</span> 전체 아티클 목록
+            </h2>
+            <span class="text-xs sm:text-sm text-slate-500 font-medium">총 2개의 글</span>
+        </div>
+
+        <!-- 카드 간격(gap-8) 및 하단 여백(mb-24) 추가로 겹침 현상 원천 차단 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
+            <article class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm hover:shadow-lg hover:border-indigo-200 transition-all flex flex-col justify-between">
+                <div>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-indigo-50 text-indigo-600 px-2.5 py-1 rounded-full text-[11px] font-bold">정부지원사업</span>
+                        <span class="bg-purple-50 text-purple-600 px-2.5 py-1 rounded-full text-[11px] font-bold">프로토타입</span>
+                    </div>
+                    <h3 class="text-xl font-black text-slate-900 mb-3 leading-snug">
+                        <a href="2026-08-13-앱-개발-초보자-가이드.html" class="hover:text-indigo-600 transition">
+                            정부지원사업 합격을 위한 실물 앱 프로토타입 제작 가이드 (2026)
+                        </a>
+                    </h3>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-6 word-keep">
+                        수천만 원짜리 백엔드 서버 구축 대신 7일 만에 안드로이드 APK 파일과 소스코드를 확보하여 예비·초기창업패키지 합격률을 높이는 전략을 소개합니다.
+                    </p>
+                </div>
+                <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
+                    <span>2026.08.13</span>
+                    <a href="2026-08-13-앱-개발-초보자-가이드.html" class="text-indigo-600 font-bold hover:underline">
+                        자세히 보기 →
+                    </a>
+                </div>
+            </article>
+
+            <article class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm hover:shadow-lg hover:border-indigo-200 transition-all flex flex-col justify-between">
+                <div>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-blue-50 text-blue-600 px-2.5 py-1 rounded-full text-[11px] font-bold">예비창업패키지</span>
+                        <span class="bg-pink-50 text-pink-600 px-2.5 py-1 rounded-full text-[11px] font-bold">IR 피칭</span>
+                    </div>
+                    <h3 class="text-xl font-black text-slate-900 mb-3 leading-snug">
+                        <a href="2026-08-13-예창패-앱-시연-준비법.html" class="hover:text-indigo-600 transition">
+                            예비창업패키지 발표 평가 100% 합격 전략: 심사위원을 사로잡는 앱 시연 노하우
+                        </a>
+                    </h3>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-6 word-keep">
+                        종이 기획서와 피그마 링크를 넘어 발표 평가장에서 심사위원에게 직접 스마트폰을 쥐여주고 실물 앱을 시연하는 3가지 연출 원칙을 공개합니다.
+                    </p>
+                </div>
+                <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
+                    <span>2026.08.13</span>
+                    <a href="2026-08-13-예창패-앱-시연-준비법.html" class="text-indigo-600 font-bold hover:underline">
+                        자세히 보기 →
+                    </a>
+                </div>
+            </article>
+        </div>
+
+        <!-- 하단 배너: 문구 하단 여백(mb-8) 부여로 버튼과 겹침 문제 해결 -->
+        <div class="cta-gradient rounded-3xl p-8 sm:p-14 text-center text-white shadow-xl relative overflow-hidden">
+            <div class="relative z-10 flex flex-col items-center">
+                <h3 class="text-2xl sm:text-3xl font-black mb-4">나만의 아이디어를 실물 앱으로 만들어보세요</h3>
+                <p class="text-indigo-100 font-light text-sm sm:text-base word-keep max-w-xl mx-auto mb-8">
+                    24시간 이내에 아이디어에 맞춘 맞춤형 무료 시안 3종을 보내드립니다.
+                </p>
+                <a href="../request.html"
+                    class="inline-flex items-center justify-center bg-white text-indigo-600 font-black text-lg px-12 py-4 rounded-xl hover:bg-slate-50 transition shadow-lg w-full sm:w-auto min-w-[280px]">
+                    무료 시안 3종 받기 →
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-[#0B0F19] text-slate-400 py-12 border-t border-slate-800 mt-16">
+        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-8">
+            <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center gap-2 text-white font-black text-lg tracking-tight mb-4">
+                    <div class="w-5 h-5 bg-white rotate-45 rounded-sm"></div>
+                    7APP
+                </div>
+                <p class="text-[13px] font-light leading-relaxed">안드로이드 샘플앱 전문 개발<br>빠르게, 합리적인 가격으로 아이디어를 현실로 만듭니다.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">서비스</h4>
+                <ul class="space-y-2 text-[13px] font-light">
+                    <li><a href="../index.html#templates" class="hover:text-white transition">앱 템플릿</a></li>
+                    <li><a href="../index.html#blocks" class="hover:text-white transition">기능 조립</a></li>
+                    <li><a href="../index.html#pricing" class="hover:text-white transition">상품 안내</a></li>                   
+                    <li><a href="../index.html#portfolio" class="hover:text-white transition">포트폴리오</a></li>
+                    <li><a href="../index.html#faq" class="hover:text-white transition">서비스 범위</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">문의 / 정책</h4>
+                <ul class="space-y-2 text-[13px] font-light">
+                    <li>이메일: 7app.kr@gmail.com</li>
+                    <li class="pt-4"><a href="#" class="hover:text-white transition font-bold">개인정보처리방침</a></li>
+                    <li><a href="#" class="hover:text-white transition">이용약관</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 mt-12 pt-8 border-t border-slate-800 text-[12px] font-light text-center">
+            © 2026 7APP. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
