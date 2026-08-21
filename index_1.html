@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7APP - 안드로이드 프로토타입 앱 전문 개발</title>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18381690833"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'AW-18381690833');
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YNK6DHR6CZ"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-YNK6DHR6CZ');
+    </script>
+    
+
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <style>
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-1Thin.woff2') format('woff2'); font-weight: 100; font-display: swap; }
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-2ExtraLight.woff2') format('woff2'); font-weight: 200; font-display: swap; }
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-3Light.woff2') format('woff2'); font-weight: 300; font-display: swap; }
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-5Medium.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-6SemiBold.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-8ExtraBold.woff2') format('woff2'); font-weight: 800; font-display: swap; }
+        @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-9Black.woff2') format('woff2'); font-weight: 900; font-display: swap; }
+
+        body { font-family: 'Paperozi', sans-serif; word-break: keep-all; font-weight: 400; letter-spacing: 0.019em; }
+        
+        .hero-gradient { background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 100%); }
+        .cta-gradient { background: linear-gradient(90deg, #4F46E5 0%, #9333EA 100%); }
+        
+        .portfolio-slider { width: 100%; overflow: hidden; position: relative; white-space: nowrap; padding: 1rem 0; }
+        .portfolio-track { display: inline-flex; gap: 1.5rem; animation: scroll 30s linear infinite; }
+        .portfolio-track:hover { animation-play-state: paused; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        
+        .process-icon-box {
+            width: 48px; height: 40px; border: 1.5px solid #3B82F6; border-radius: 0 6px 6px 6px;
+            position: relative; display: flex; align-items: center; justify-content: center;
+            background-color: #090E17; margin-top: 6px;
+        }
+        .process-icon-box::before {
+            content: ''; position: absolute; top: -6.5px; left: -1.5px; width: 18px; height: 6px;
+            border: 1.5px solid #3B82F6; border-bottom: none; border-radius: 4px 4px 0 0;
+            background-color: #090E17; z-index: 2;
+        }
+        .process-icon-box::after {
+            content: ''; position: absolute; top: -1.5px; left: 0; width: 16.5px; height: 3px;
+            background-color: #090E17; z-index: 3;
+        }
+        
+        .word-keep { word-break: keep-all; }
+        
+        .masonry-grid { column-count: 1; column-gap: 1.5rem; }
+        @media (min-width: 768px) { .masonry-grid { column-count: 2; } }
+        @media (min-width: 1024px) { .masonry-grid { column-count: 3; } }
+        .masonry-item { break-inside: avoid; margin-bottom: 1.5rem; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-[#6B46C1] selection:text-white font-normal">
+
+    <header class="fixed w-full top-0 z-50 bg-[#0F172A]/90 backdrop-blur-md border-b border-slate-800 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2 text-white font-black text-xl tracking-tight">
+                <div class="w-6 h-6 bg-white rotate-45 rounded-sm"></div>
+                7APP
+            </div>
+            <nav class="hidden md:flex gap-8 text-sm text-slate-300 font-medium">
+                <a href="#templates" class="hover:text-white transition">앱 템플릿</a>
+                <a href="#blocks" class="hover:text-white transition">기능 조립</a>
+                <a href="#pricing" class="hover:text-white transition">상품 안내</a>
+                <a href="#portfolio" class="hover:text-white transition">포트폴리오</a>
+                <a href="#faq" class="hover:text-white transition">서비스 범위</a>
+                <a href="./blog/main.html" class="hover:text-white transition">블로그</a>
+            </nav>
+            <a href="request.html" 
+                class="hidden md:flex items-center justify-center gap-1 bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-5 py-2 rounded-full text-sm font-bold hover:opacity-90 transition shadow-lg shadow-[#6B46C1]/30">
+                무료 시안 3종 받기 <img src="emoji/2794.png" class="w-4 h-4" style="filter: brightness(0) invert(1);" alt="화살표">
+            </a>
+        </div>
+    </header>
+
+    <section class="hero-gradient pt-32 pb-20 text-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
+            <div data-aos="fade-right" data-aos-duration="1000">
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <span class="bg-indigo-500/30 border border-indigo-400/50 text-indigo-100 px-3 py-1.5 rounded-full text-[12px] font-bold">#정부지원사업_제출용</span>
+                    <span class="bg-purple-500/30 border border-purple-400/50 text-purple-100 px-3 py-1.5 rounded-full text-[12px] font-bold">#투자자_IR피칭용</span>
+                    <span class="bg-blue-500/30 border border-blue-400/50 text-blue-100 px-3 py-1.5 rounded-full text-[12px] font-bold">#사내_아이디어_검증용</span>
+                    <span class="bg-blue-500/30 border border-blue-400/50 text-blue-100 px-3 py-1.5 rounded-full text-[12px] font-bold">#해커톤_조별과제</span>
+                </div>
+                
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-6">
+                    종이 기획서는 그만,<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">7일 만에 만져보는 실물 안드로이드 앱</span>
+                </h1>
+                <p class="text-lg font-light text-slate-300 mb-8 max-w-lg leading-relaxed word-keep">
+                    아이디어 검증 단계에서 수천만 원짜리 완벽한 앱은 돈 낭비입니다. 
+                    심사위원과 투자자를 단숨에 설득할 <strong class="font-bold text-white">눈앞에 보이는 앱</strong>에만 집중하여 압도적으로 빠르고 저렴하게 만들어냅니다.
+                </p>
+                <div class="flex flex-wrap gap-4 mb-8 text-sm font-medium text-slate-200">
+                    <div class="flex items-center gap-2"><img src="emoji/26a1.png" class="w-4 h-4 inline-block" alt="번개"> 7일 이내 완성</div>
+                    <div class="flex items-center gap-2"><img src="emoji/2705.png" class="w-4 h-4 inline-block" alt="체크"> 투명한 고정가 견적</div>
+                    <div class="flex items-center gap-2"><img src="emoji/1f4bb.png" class="w-4 h-4 inline-block" alt="노트북"> 100% 소스코드 제공</div>
+                </div>
+                <div class="flex flex-wrap gap-4">
+                    <a href="request.html" 
+                        class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-8 py-4 rounded-xl font-bold text-lg hover:opacity-90 transition shadow-lg shadow-indigo-500/30 w-full sm:w-auto">
+                        무료 시안 3종 받기 <img src="emoji/2794.png" class="w-5 h-5" style="filter: brightness(0) invert(1);" alt="화살표">
+                    </a>
+                    <a href="#templates" class="px-8 py-4 rounded-xl font-bold text-lg border border-slate-600 hover:bg-slate-800 transition flex items-center justify-center w-full sm:w-auto">
+                        템플릿 먼저 보기
+                    </a>
+                </div>
+            </div>
+            
+            <div class="relative w-full max-w-md mx-auto hidden md:block" data-aos="fade-left" data-aos-duration="1000">
+                <div class="absolute inset-0 bg-gradient-to-tr from-indigo-500/20 to-purple-500/20 blur-3xl rounded-full"></div>
+                <lottie-player 
+                    src="https://lottie.host/83592cfe-d13d-4b67-b891-a42de389c04d/oZMcU230Fb.json"
+                    background="transparent" 
+                    speed="1" 
+                    style="width: 100%; height: auto;" 
+                    loop 
+                    autoplay 
+                    class="relative z-10 drop-shadow-2xl hover:scale-[1.02] transition duration-500">
+                </lottie-player>
+            </div>
+        </div>
+    </section>
+
+    <!-- 1. 앱 템플릿(프리셋) 선택 영역 -->
+    <section id="templates" class="py-20 bg-slate-100">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-14" data-aos="fade-up">
+                <span class="text-xs font-bold bg-blue-100 text-blue-600 px-3 py-1 rounded-full mb-3 inline-block">STEP 1. 앱 종류</span>
+                <h2 class="text-3xl font-black mb-4">어떤 앱을 구상 중이신가요?</h2>
+                <p class="text-slate-500 font-medium word-keep">유명 앱들의 핵심 뼈대만 가져왔습니다. 아이디어와 가장 비슷한 템플릿을 확인해보세요.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Template 1 -->
+                <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-14 h-14 bg-green-50 rounded-2xl flex items-center justify-center mb-4"><img src="emoji/1f3c3-200d-2642.png" class="w-8 h-8" alt="운동"></div>
+                    <div class="text-[12px] text-blue-600 font-black mb-1 bg-blue-50 inline-block px-2 py-1 rounded"><img src="emoji/1f4a1.png" class="w-3 h-3 inline-block -mt-0.5" alt="전구"> 나이키 런 클럽, 런데이 스타일</div>
+                    <h3 class="text-xl font-black text-slate-800 mb-2 mt-1">운동 / 루틴 관리 앱</h3>
+                    <p class="text-[13px] text-slate-500 mb-5 min-h-[40px] word-keep">사용자의 목표 달성을 돕고 매일의 습관과 기록을 관리하는 자기계발 앱</p>
+                    <div class="pt-4 border-t border-slate-100">
+                        <span class="text-[11px] font-bold text-slate-400 block mb-2">기본 포함 블록 조합</span>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-bold rounded"><img src="emoji/2705.png" class="w-3 h-3 inline-block -mt-0.5" alt="체크"> 체크리스트</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-bold rounded"><img src="emoji/1f4c5.png" class="w-3 h-3 inline-block -mt-0.5" alt="달력"> 일정 관리</span>                            
+                            <span class="px-2 py-1 bg-blue-100 text-blue-600 text-[11px] font-bold rounded"><img src="emoji/1f3c3-200d-2642.png" class="w-3 h-3 inline-block -mt-0.5" alt="달리기"> 신체 활동량</span>
+                            <span class="px-2 py-1 bg-orange-100 text-orange-600 text-[11px] font-bold rounded"><img src="emoji/1f514.png" class="w-3 h-3 inline-block -mt-0.5" alt="종"> 알림 띄우기</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Template 2 -->
+                <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center mb-4"><img src="emoji/1f4cd.png" class="w-8 h-8" alt="장소"></div>
+                    <div class="text-[12px] text-blue-600 font-black mb-1 bg-blue-50 inline-block px-2 py-1 rounded"><img src="emoji/1f4a1.png" class="w-3 h-3 inline-block -mt-0.5" alt="전구"> 당근마켓, 망고플레이트 스타일</div>
+                    <h3 class="text-xl font-black text-slate-800 mb-2 mt-1">장소 추천 / O2O 매칭 앱</h3>
+                    <p class="text-[13px] text-slate-500 mb-5 min-h-[40px] word-keep">맛집, 핫플 등 특정 장소를 지도에 띄워 큐레이션하고 정보를 제공하는 앱</p>
+                    <div class="pt-4 border-t border-slate-100">
+                        <span class="text-[11px] font-bold text-slate-400 block mb-2">기본 포함 블록 조합</span>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-bold rounded"><img src="emoji/1f5bc.png" class="w-3 h-3 inline-block -mt-0.5" alt="액자"> 사진 저장</span>        
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-bold rounded"><img src="emoji/1f4dc.png" class="w-3 h-3 inline-block -mt-0.5" alt="두루마리"> 리스트 보기</span>          
+                            <span class="px-2 py-1 bg-blue-100 text-blue-600 text-[11px] font-bold rounded"><img src="emoji/1f4cd.png" class="w-3 h-3 inline-block -mt-0.5" alt="핀"> 현재 위치(지도)</span>    
+                            <span class="px-2 py-1 bg-pink-100 text-pink-500 text-[11px] font-bold rounded"><img src="emoji/1f447.png" class="w-3 h-3 inline-block -mt-0.5" alt="손가락"> 하단 메뉴(탭)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Template 3 -->
+                <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 bg-purple-50 rounded-2xl flex items-center justify-center mb-4"><img src="emoji/1f5e3.png" class="w-8 h-8" alt="말하기"></div>
+                    <div class="text-[12px] text-blue-600 font-black mb-1 bg-blue-50 inline-block px-2 py-1 rounded"><img src="emoji/1f4a1.png" class="w-3 h-3 inline-block -mt-0.5" alt="전구"> 스픽, 듀오링고 스타일</div>
+                    <h3 class="text-xl font-black text-slate-800 mb-2 mt-1">AI 어학 / 번역 앱</h3>
+                    <p class="text-[13px] text-slate-500 mb-5 min-h-[40px] word-keep">음성 인식(STT)과 인공지능을 활용하여 회화 연습 및 번역을 돕는 교육 앱</p>
+                    <div class="pt-4 border-t border-slate-100">
+                        <span class="text-[11px] font-bold text-slate-400 block mb-2">기본 포함 블록 조합</span>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-bold rounded"><img src="emoji/1f4dd.png" class="w-3 h-3 inline-block -mt-0.5" alt="메모"> 메모 저장</span>    
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-bold rounded"><img src="emoji/1f4dc.png" class="w-3 h-3 inline-block -mt-0.5" alt="두루마리"> 리스트 보기</span>   
+                            <span class="px-2 py-1 bg-purple-100 text-purple-600 text-[11px] font-bold rounded"><img src="emoji/1f399.png" class="w-3 h-3 inline-block -mt-0.5" alt="마이크"> 음성→글자(STT)</span>
+                            <span class="px-2 py-1 bg-purple-100 text-purple-600 text-[11px] font-bold rounded"><img src="emoji/1f310.png" class="w-3 h-3 inline-block -mt-0.5" alt="지구"> 언어 번역</span> 
+                            <span class="px-2 py-1 bg-pink-100 text-pink-500 text-[11px] font-bold rounded"><img src="emoji/1f447.png" class="w-3 h-3 inline-block -mt-0.5" alt="손가락"> 하단 메뉴(탭)</span> 
+                            <span class="px-2 py-1 bg-pink-100 text-pink-500 text-[11px] font-bold rounded"><img src="emoji/2194.png" class="w-3 h-3 inline-block -mt-0.5" alt="화살표"> 화면 넘기기</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Template 4 -->
+                <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-14 h-14 bg-pink-50 rounded-2xl flex items-center justify-center mb-4"><img src="emoji/1f457.png" class="w-8 h-8" alt="옷"></div>
+                    <div class="text-[12px] text-blue-600 font-black mb-1 bg-blue-50 inline-block px-2 py-1 rounded"><img src="emoji/1f4a1.png" class="w-3 h-3 inline-block -mt-0.5" alt="전구"> 무신사, 지그재그 하이브리드</div>
+                    <h3 class="text-xl font-black text-slate-800 mb-2 mt-1">쇼핑몰 / 자사 전용 앱</h3>
+                    <p class="text-[13px] text-slate-500 mb-5 min-h-[40px] word-keep">기존 운영 중인 웹사이트를 앱으로 감싸고 알림 등을 추가한 하이브리드 앱</p>
+                    <div class="pt-4 border-t border-slate-100">
+                        <span class="text-[11px] font-bold text-slate-400 block mb-2">기본 포함 블록 조합</span>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-pink-100 text-pink-500 text-[11px] font-bold rounded"><img src="emoji/2728.png" class="w-3 h-3 inline-block -mt-0.5" alt="반짝"> 시작 화면</span>
+                            <span class="px-2 py-1 bg-pink-100 text-pink-500 text-[11px] font-bold rounded"><img src="emoji/1f447.png" class="w-3 h-3 inline-block -mt-0.5" alt="손가락"> 하단 탭 메뉴</span>
+                            <span class="px-2 py-1 bg-pink-100 text-pink-500 text-[11px] font-bold rounded"><img src="emoji/2194.png" class="w-3 h-3 inline-block -mt-0.5" alt="화살표"> 화면 넘기기</span>
+                            <span class="px-2 py-1 bg-pink-100 text-pink-500 text-[11px] font-bold rounded"><img src="emoji/1f4f2.png" class="w-3 h-3 inline-block -mt-0.5" alt="스마트폰"> 웹사이트 감싸기</span>
+                            <span class="px-2 py-1 bg-orange-100 text-orange-600 text-[11px] font-bold rounded"><img src="emoji/1f514.png" class="w-3 h-3 inline-block -mt-0.5" alt="종"> 알림 띄우기</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Template 5 -->
+                <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 bg-indigo-50 rounded-2xl flex items-center justify-center mb-4"><img src="emoji/1f4bc.png" class="w-8 h-8" alt="가방"></div>
+                    <div class="text-[12px] text-blue-600 font-black mb-1 bg-blue-50 inline-block px-2 py-1 rounded"><img src="emoji/1f4a1.png" class="w-3 h-3 inline-block -mt-0.5" alt="전구"> 리멤버, 세일즈포스 모바일 스타일</div>
+                    <h3 class="text-xl font-black text-slate-800 mb-2 mt-1">영업 / 고객 관리 앱 (CRM)</h3>
+                    <p class="text-[13px] text-slate-500 mb-5 min-h-[40px] word-keep">VIP 고객 정보나 현장 외근 기록을 스마트폰으로 빠르게 처리하는 업무용 앱</p>
+                    <div class="pt-4 border-t border-slate-100">
+                        <span class="text-[11px] font-bold text-slate-400 block mb-2">기본 포함 블록 조합</span>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-bold rounded"><img src="emoji/1f4dd.png" class="w-3 h-3 inline-block -mt-0.5" alt="메모"> 메모 저장</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-bold rounded"><img src="emoji/1f4c5.png" class="w-3 h-3 inline-block -mt-0.5" alt="달력"> 일정 관리</span>                                                     
+                            <span class="px-2 py-1 bg-blue-100 text-blue-600 text-[11px] font-bold rounded"><img src="emoji/1f4de.png" class="w-3 h-3 inline-block -mt-0.5" alt="전화"> 전화/문자 연결</span>                                                 
+                            <span class="px-2 py-1 bg-blue-100 text-blue-600 text-[11px] font-bold rounded"><img src="emoji/1f4f0.png" class="w-3 h-3 inline-block -mt-0.5" alt="신문"> 전화번호 목록</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Template 6 -->
+                <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center mb-4"><img src="emoji/1f3a7.png" class="w-8 h-8" alt="헤드폰"></div>
+                    <div class="text-[12px] text-blue-600 font-black mb-1 bg-blue-50 inline-block px-2 py-1 rounded"><img src="emoji/1f4a1.png" class="w-3 h-3 inline-block -mt-0.5" alt="전구"> 캄(Calm), 유튜브 뮤직 스타일</div>
+                    <h3 class="text-xl font-black text-slate-800 mb-2 mt-1">수면 유도 / 오디오 앱</h3>
+                    <p class="text-[13px] text-slate-500 mb-5 min-h-[40px] word-keep">백색소음, 명상 등 미디어를 재생하며 화면을 꺼도 멈추지 않는 앱</p>
+                    <div class="pt-4 border-t border-slate-100">
+                        <span class="text-[11px] font-bold text-slate-400 block mb-2">기본 포함 블록 조합</span>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-bold rounded"><img src="emoji/2705.png" class="w-3 h-3 inline-block -mt-0.5" alt="체크"> 체크리스트</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-bold rounded"><img src="emoji/1f4dc.png" class="w-3 h-3 inline-block -mt-0.5" alt="두루마리"> 리스트 보기</span>                                                   
+                            <span class="px-2 py-1 bg-blue-100 text-blue-600 text-[11px] font-bold rounded"><img src="emoji/1f4fa.png" class="w-3 h-3 inline-block -mt-0.5" alt="티비"> 동영상/음악 재생</span> 
+                            <span class="px-2 py-1 bg-pink-100 text-pink-500 text-[11px] font-bold rounded"><img src="emoji/1f447.png" class="w-3 h-3 inline-block -mt-0.5" alt="손가락"> 하단 탭 메뉴</span>
+                            <span class="px-2 py-1 bg-orange-100 text-orange-600 text-[11px] font-bold rounded"><img src="emoji/1f504.png" class="w-3 h-3 inline-block -mt-0.5" alt="새로고침"> 화면 꺼져도 실행</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Template 7 (New) -->
+                <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center mb-4"><img src="emoji/1f957.png" class="w-8 h-8" alt="샐러드"></div>
+                    <div class="text-[12px] text-blue-600 font-black mb-1 bg-blue-50 inline-block px-2 py-1 rounded"><img src="emoji/1f4a1.png" class="w-3 h-3 inline-block -mt-0.5" alt="전구"> 인아웃, 팻시크릿 스타일</div>
+                    <h3 class="text-xl font-black text-slate-800 mb-2 mt-1">다이어트 / 식단 기록 앱</h3>
+                    <p class="text-[13px] text-slate-500 mb-5 min-h-[40px] word-keep">매일 먹은 음식 사진과 메모를 내 폰에만 기록하고 달력으로 모아보는 건강 앱</p>
+                    <div class="pt-4 border-t border-slate-100">
+                        <span class="text-[11px] font-bold text-slate-400 block mb-2">기본 포함 블록 조합</span>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-bold rounded"><img src="emoji/1f5bc.png" class="w-3 h-3 inline-block -mt-0.5" alt="액자"> 사진(갤러리)</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-bold rounded"><img src="emoji/1f4c5.png" class="w-3 h-3 inline-block -mt-0.5" alt="달력"> 일정 관리</span>
+                            <span class="px-2 py-1 bg-blue-100 text-blue-600 text-[11px] font-bold rounded"><img src="emoji/1f4f8.png" class="w-3 h-3 inline-block -mt-0.5" alt="카메라"> 카메라 촬영</span>
+                            <span class="px-2 py-1 bg-pink-100 text-pink-500 text-[11px] font-bold rounded"><img src="emoji/1f447.png" class="w-3 h-3 inline-block -mt-0.5" alt="손가락"> 하단 탭 메뉴</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Template 8 (New) -->
+                <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 bg-amber-50 rounded-2xl flex items-center justify-center mb-4"><img src="emoji/1f4cb.png" class="w-8 h-8" alt="클립보드"></div>
+                    <div class="text-[12px] text-blue-600 font-black mb-1 bg-blue-50 inline-block px-2 py-1 rounded"><img src="emoji/1f4a1.png" class="w-3 h-3 inline-block -mt-0.5" alt="전구"> 노션, 스마트스토어 판매자앱 스타일</div>
+                    <h3 class="text-xl font-black text-slate-800 mb-2 mt-1">현장 점검 / 업무 일지 앱</h3>
+                    <p class="text-[13px] text-slate-500 mb-5 min-h-[40px] word-keep">현장 사진을 촬영하고 점검 항목을 체크하여 기기에 안전하게 보관하는 오프라인 앱</p>
+                    <div class="pt-4 border-t border-slate-100">
+                        <span class="text-[11px] font-bold text-slate-400 block mb-2">기본 포함 블록 조합</span>
+                        <div class="flex flex-wrap gap-2">                            
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-bold rounded"><img src="emoji/1f4dd.png" class="w-3 h-3 inline-block -mt-0.5" alt="메모"> 메모/글 저장</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-bold rounded"><img src="emoji/2705.png" class="w-3 h-3 inline-block -mt-0.5" alt="체크"> 체크리스트</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-bold rounded"><img src="emoji/1f4c5.png" class="w-3 h-3 inline-block -mt-0.5" alt="달력"> 일정 관리(달력)</span>
+                            <span class="px-2 py-1 bg-blue-100 text-blue-600 text-[11px] font-bold rounded"><img src="emoji/1f4f8.png" class="w-3 h-3 inline-block -mt-0.5" alt="카메라"> 카메라 촬영</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Template 9 (New) -->
+                <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 bg-rose-50 rounded-2xl flex items-center justify-center mb-4"><img src="emoji/1f4f1.png" class="w-8 h-8" alt="스마트폰"></div>
+                    <div class="text-[12px] text-blue-600 font-black mb-1 bg-blue-50 inline-block px-2 py-1 rounded"><img src="emoji/1f4a1.png" class="w-3 h-3 inline-block -mt-0.5" alt="전구"> 이케아, 무인 키오스크 스타일</div>
+                    <h3 class="text-xl font-black text-slate-800 mb-2 mt-1">매장 전용 / 카탈로그 앱</h3>
+                    <p class="text-[13px] text-slate-500 mb-5 min-h-[40px] word-keep">결제 기능 없이 오프라인 매장에서 방문 고객에게 상품 목록과 이미지를 보여주는 전시 앱</p>
+                    <div class="pt-4 border-t border-slate-100">
+                        <span class="text-[11px] font-bold text-slate-400 block mb-2">기본 포함 블록 조합</span>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-bold rounded"><img src="emoji/1f5bc.png" class="w-3 h-3 inline-block -mt-0.5" alt="액자"> 사진(갤러리)</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-bold rounded"><img src="emoji/1f4dc.png" class="w-3 h-3 inline-block -mt-0.5" alt="두루마리"> 리스트 보기</span>
+                            <span class="px-2 py-1 bg-pink-100 text-pink-500 text-[11px] font-bold rounded"><img src="emoji/2728.png" class="w-3 h-3 inline-block -mt-0.5" alt="반짝"> 시작 화면</span>
+                            <span class="px-2 py-1 bg-pink-100 text-pink-500 text-[11px] font-bold rounded"><img src="emoji/2194.png" class="w-3 h-3 inline-block -mt-0.5" alt="화살표"> 화면 넘기기</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center text-slate-500 text-[14px]">
+                * 템플릿은 예시일 뿐입니다. <strong class="text-slate-800 font-bold">아래의 조립형 블록</strong>을 조합하여 세상에 없는 앱을 만들 수 있습니다. <img src="emoji/1f447.png" class="w-4 h-4 inline-block align-middle" alt="아래로">
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. 기능 조립 블록 (옵션) 영역 -->
+    <section id="blocks" class="py-20 bg-white border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="text-xs font-bold bg-blue-100 text-blue-600 px-3 py-1 rounded-full mb-3 inline-block">STEP 2. 기능 조립하기</span>
+                <h2 class="text-3xl font-black mb-4">선택 가능한 조립형 블록</h2>
+                <p class="text-slate-500 font-medium text-[15px]">내 아이디어에 딱 맞는 기능만 레고처럼 조립해서 견적을 예상해보세요.</p>
+            </div>
+            
+            <!-- 1. 기록 및 목록 -->
+            <div class="mb-14" data-aos="fade-up" data-aos-delay="0">
+                <h3 class="text-[20px] font-black text-slate-800 mb-6 flex items-center gap-2 pb-3 border-b-2 border-slate-100">
+                    <img src="emoji/1f4dd.png" class="w-6 h-6 inline-block" alt="메모"> 1. 기록 및 목록 <span class="text-[13px] font-medium text-slate-400 ml-2 font-normal hidden sm:inline-block">앱의 뼈대가 되는 기본 데이터 관리</span>
+                </h3>
+                <div class="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-slate-300 hover:shadow-md transition text-center h-full">
+                        <span class="text-[10px] font-black px-3 py-1 bg-slate-100 text-slate-500 rounded-full mb-3 tracking-wide">기록/목록</span>
+                        <img src="emoji/1f4dd.png" class="w-8 h-8 mb-3 mx-auto" alt="메모">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">메모 / 글 저장</h4>
+                        <p class="text-[13px] text-slate-400 font-black mb-3">기본 / +10만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">텍스트를 자유롭게 작성하고 기기에 목록으로 저장합니다.</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-slate-300 hover:shadow-md transition text-center h-full">
+                        <span class="text-[10px] font-black px-3 py-1 bg-slate-100 text-slate-500 rounded-full mb-3 tracking-wide">기록/목록</span>
+                        <img src="emoji/1f5bc.png" class="w-8 h-8 mb-3 mx-auto" alt="사진">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">사진(갤러리)</h4>
+                        <p class="text-[13px] text-slate-400 font-black mb-3">기본 / +10만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">기록된 여러 장의 사진을 격자 형태로 모아 봅니다.</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-slate-300 hover:shadow-md transition text-center h-full">
+                        <span class="text-[10px] font-black px-3 py-1 bg-slate-100 text-slate-500 rounded-full mb-3 tracking-wide">기록/목록</span>
+                        <img src="emoji/2705.png" class="w-8 h-8 mb-3 mx-auto" alt="체크">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">체크리스트 (할 일)</h4>
+                        <p class="text-[13px] text-slate-400 font-black mb-3">기본 / +10만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">항목을 등록하고 체크박스를 눌러 완료 여부를 표시합니다.</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-slate-300 hover:shadow-md transition text-center h-full">
+                        <span class="text-[10px] font-black px-3 py-1 bg-slate-100 text-slate-500 rounded-full mb-3 tracking-wide">기록/목록</span>
+                        <img src="emoji/1f4c5.png" class="w-8 h-8 mb-3 mx-auto" alt="달력">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">일정 관리 (달력)</h4>
+                        <p class="text-[13px] text-slate-400 font-black mb-3">기본 / +10만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">달력 화면을 띄우고 날짜별로 간단한 일정을 관리합니다.</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-slate-300 hover:shadow-md transition text-center h-full">
+                        <span class="text-[10px] font-black px-3 py-1 bg-slate-100 text-slate-500 rounded-full mb-3 tracking-wide">기록/목록</span>
+                        <img src="emoji/1f4dc.png" class="w-8 h-8 mb-3 mx-auto" alt="리스트">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">리스트 보기 (피드)</h4>
+                        <p class="text-[13px] text-slate-400 font-black mb-3">기본 / +10만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">여러 개의 데이터를 게시판이나 피드 형태로 스크롤해 보여줍니다.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. 스마트폰 기능 -->
+            <div class="mb-14" data-aos="fade-up" data-aos-delay="0">
+                <h3 class="text-[20px] font-black text-slate-800 mb-6 flex items-center gap-2 pb-3 border-b-2 border-slate-100">
+                    <img src="emoji/1f4f1.png" class="w-6 h-6 inline-block" alt="스마트폰"> 2. 스마트폰 기능 <span class="text-[13px] font-medium text-slate-400 ml-2 font-normal hidden sm:inline-block">스마트폰 하드웨어 및 외부 연동</span>
+                </h3>
+                <div class="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-blue-200 hover:shadow-md transition text-center h-full">
+                        <span class="text-[10px] font-black px-3 py-1 bg-blue-100 text-blue-600 rounded-full mb-3 tracking-wide">스마트폰 기능</span>
+                        <img src="emoji/1f4f8.png" class="w-8 h-8 mb-3 mx-auto" alt="카메라">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">카메라 촬영</h4>
+                        <p class="text-[13px] text-blue-500 font-black mb-3">+20만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">앱 안에서 카메라를 열어 직접 사진이나 영상을 촬영하고 저장합니다.</p>
+                    </div>                                        
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-blue-200 hover:shadow-md transition text-center h-full">
+                        <span class="text-[10px] font-black px-3 py-1 bg-blue-100 text-blue-600 rounded-full mb-3 tracking-wide">스마트폰 기능</span>
+                        <img src="emoji/1f534.png" class="w-8 h-8 mb-3 mx-auto" alt="녹음">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">음성녹음</h4>
+                        <p class="text-[13px] text-blue-500 font-black mb-3">+10만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">음성을 녹음하여 저장하고 재생합니다.</p>
+                    </div>                    
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-blue-200 hover:shadow-md transition text-center h-full">
+                        <span class="text-[10px] font-black px-3 py-1 bg-blue-100 text-blue-600 rounded-full mb-3 tracking-wide">스마트폰 기능</span>
+                        <img src="emoji/1f4fa.png" class="w-8 h-8 mb-3 mx-auto" alt="동영상">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">동영상/음악 재생</h4>
+                        <p class="text-[13px] text-blue-500 font-black mb-3">+20만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">스마트폰 내의 동영상/음악 목록을 생성하고 재생합니다.</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-blue-200 hover:shadow-md transition text-center h-full">
+                        <span class="text-[10px] font-black px-3 py-1 bg-blue-100 text-blue-600 rounded-full mb-3 tracking-wide">스마트폰 기능</span>
+                        <img src="emoji/1f533.png" class="w-8 h-8 mb-3 mx-auto" alt="바코드">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">QR/바코드 인식</h4>
+                        <p class="text-[13px] text-blue-500 font-black mb-3">+20만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">카메라로 QR이나 바코드를 스캔해 정보를 읽어옵니다.</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-blue-200 hover:shadow-md transition text-center h-full">
+                        <span class="text-[10px] font-black px-3 py-1 bg-blue-100 text-blue-600 rounded-full mb-3 tracking-wide">스마트폰 기능</span>
+                        <img src="emoji/1f533.png" class="w-8 h-8 mb-3 mx-auto" alt="바코드생성">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">QR/바코드 생성</h4>
+                        <p class="text-[13px] text-blue-500 font-black mb-3">+20만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">QR이나 바코드를 생성합니다.</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-blue-200 hover:shadow-md transition text-center h-full">
+                        <span class="text-[10px] font-black px-3 py-1 bg-blue-100 text-blue-600 rounded-full mb-3 tracking-wide">스마트폰 기능</span>
+                        <img src="emoji/1f4de.png" class="w-8 h-8 mb-3 mx-auto" alt="전화">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">전화/문자 바로가기</h4>
+                        <p class="text-[13px] text-blue-500 font-black mb-3">+10만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">버튼을 눌러 특정 번호로 전화통화나 문자를 바로 연결합니다.</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-blue-200 hover:shadow-md transition text-center h-full">
+                        <span class="text-[10px] font-black px-3 py-1 bg-blue-100 text-blue-600 rounded-full mb-3 tracking-wide">스마트폰 기능</span>
+                        <img src="emoji/1f517.png" class="w-8 h-8 mb-3 mx-auto" alt="링크">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">웹사이트 연결</h4>
+                        <p class="text-[13px] text-blue-500 font-black mb-3">+10만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">밖으로 나가지 않고 앱 안에서 쇼핑몰이나 특정 웹페이지를 띄웁니다.</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-blue-200 hover:shadow-md transition text-center h-full">
+                        <span class="text-[10px] font-black px-3 py-1 bg-blue-100 text-blue-600 rounded-full mb-3 tracking-wide">스마트폰 기능</span>
+                        <img src="emoji/1f4f0.png" class="w-8 h-8 mb-3 mx-auto" alt="목록">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">전화번호 목록</h4>
+                        <p class="text-[13px] text-blue-500 font-black mb-3">+10만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">전화번호목록을 가져와서 친구추가등의 기능을 구현합니다.</p>
+                    </div>                    
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-blue-200 hover:shadow-md transition text-center h-full">
+                        <span class="text-[10px] font-black px-3 py-1 bg-blue-100 text-blue-600 rounded-full mb-3 tracking-wide">스마트폰 기능</span>
+                        <img src="emoji/1f4cd.png" class="w-8 h-8 mb-3 mx-auto" alt="위치">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">현재 위치 (지도)</h4>
+                        <p class="text-[13px] text-blue-500 font-black mb-3">+20만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">지도 화면을 띄워 현재 내 위치나 매장 위치를 핀으로 표시합니다.</p>
+                    </div>                    
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-blue-200 hover:shadow-md transition text-center h-full">
+                        <span class="text-[10px] font-black px-3 py-1 bg-blue-100 text-blue-600 rounded-full mb-3 tracking-wide">스마트폰 기능</span>
+                        <img src="emoji/1f3c3-200d-2642.png" class="w-8 h-8 mb-3 mx-auto" alt="달리기">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">신체 활동량</h4>
+                        <p class="text-[13px] text-blue-500 font-black mb-3">+20만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">활동량 데이터를 가져와서 처리합니다.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. AI 및 스마트 기능 -->
+            <div class="mb-14" data-aos="fade-up" data-aos-delay="0">
+                <h3 class="text-[20px] font-black text-slate-800 mb-6 flex items-center gap-2 pb-3 border-b-2 border-slate-100">
+                    <img src="emoji/1f916.png" class="w-6 h-6 inline-block" alt="AI"> 3. AI 및 스마트 기능 <span class="text-[13px] font-medium text-slate-400 ml-2 font-normal hidden sm:inline-block">앱의 수준을 한 차원 높이는 지능형 기능</span>
+                </h3>
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-purple-200 hover:shadow-md transition text-center h-full">
+                        <span class="text-[10px] font-black px-3 py-1 bg-purple-100 text-purple-600 rounded-full mb-3 tracking-wide">AI/스마트</span>
+                        <img src="emoji/1f4ac.png" class="w-8 h-8 mb-3 mx-auto" alt="채팅">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">AI 상담 (챗봇)</h4>
+                        <p class="text-[13px] text-purple-500 font-black mb-3">프리미엄 / +100만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">채팅창 화면을 통해 AI와 실시간으로 질문과 답변을 나눕니다.</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-purple-200 hover:shadow-md transition text-center h-full">
+                        <span class="text-[10px] font-black px-3 py-1 bg-purple-100 text-purple-600 rounded-full mb-3 tracking-wide">AI/스마트</span>
+                        <img src="emoji/1f4a1.png" class="w-8 h-8 mb-3 mx-auto" alt="전구">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">AI 추천/분석</h4>
+                        <p class="text-[13px] text-purple-500 font-black mb-3">프리미엄 / +100만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">사용자의 입력 정보나 상황에 맞춰 최적의 결괏값을 AI가 추천합니다.</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-purple-200 hover:shadow-md transition text-center h-full">
+                        <span class="text-[10px] font-black px-3 py-1 bg-purple-100 text-purple-600 rounded-full mb-3 tracking-wide">AI/스마트</span>
+                        <img src="emoji/1f399.png" class="w-8 h-8 mb-3 mx-auto" alt="마이크">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">음성 → 글자 (STT)</h4>
+                        <p class="text-[13px] text-purple-500 font-black mb-3">+30만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">말하는 목소리를 실시간으로 자동 인식해 글자로 타이핑합니다.</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-purple-200 hover:shadow-md transition text-center h-full">
+                        <span class="text-[10px] font-black px-3 py-1 bg-purple-100 text-purple-600 rounded-full mb-3 tracking-wide">AI/스마트</span>
+                        <img src="emoji/1f310.png" class="w-8 h-8 mb-3 mx-auto" alt="글로벌">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">언어 번역</h4>
+                        <p class="text-[13px] text-purple-500 font-black mb-3">+30만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">입력된 텍스트나 인식된 글자를 다른 국가의 언어로 자동 번역합니다.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. 앱 꾸미기 -->
+            <div class="mb-14" data-aos="fade-up" data-aos-delay="0">
+                <h3 class="text-[20px] font-black text-slate-800 mb-6 flex items-center gap-2 pb-3 border-b-2 border-slate-100">
+                    <img src="emoji/2728.png" class="w-6 h-6 inline-block" alt="꾸미기"> 4. 앱 꾸미기 <span class="text-[13px] font-medium text-slate-400 ml-2 font-normal hidden sm:inline-block">앱의 외형을 포장하고 사용성을 높이는 디자인</span>
+                </h3>
+                <div class="grid grid-cols-2 lg:grid-cols-5 gap-4">
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-pink-200 hover:shadow-md transition text-center h-full">
+                        <span class="text-[10px] font-black px-3 py-1 bg-pink-100 text-pink-500 rounded-full mb-3 tracking-wide">UI/UX 꾸미기</span>
+                        <img src="emoji/2728.png" class="w-8 h-8 mb-3 mx-auto" alt="반짝">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">시작 화면 (스플래시)</h4>
+                        <p class="text-[13px] text-pink-500 font-black mb-3">+10만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">앱을 처음 켤 때 브랜드 로고가 잠시 나타나는 세련된 로딩 화면입니다.</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-pink-200 hover:shadow-md transition text-center h-full">
+                        <span class="text-[10px] font-black px-3 py-1 bg-pink-100 text-pink-500 rounded-full mb-3 tracking-wide">UI/UX 꾸미기</span>
+                        <img src="emoji/1f447.png" class="w-8 h-8 mb-3 mx-auto" alt="아래로">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">하단 메뉴 (탭)</h4>
+                        <p class="text-[13px] text-pink-500 font-black mb-3">+10만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">화면 하단에 고정된 메뉴 아이콘을 눌러 각 기능으로 편하게 이동합니다.</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-pink-200 hover:shadow-md transition text-center h-full">
+                        <span class="text-[10px] font-black px-3 py-1 bg-pink-100 text-pink-500 rounded-full mb-3 tracking-wide">UI/UX 꾸미기</span>
+                        <img src="emoji/2194.png" class="w-8 h-8 mb-3 mx-auto" alt="화살표">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">화면 넘기기 (스와이프)</h4>
+                        <p class="text-[13px] text-pink-500 font-black mb-3">+10만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">버튼을 누르지 않고 스마트폰 화면을 좌우로 밀어서 다음 내용을 봅니다.</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-pink-200 hover:shadow-md transition text-center h-full">
+                        <span class="text-[10px] font-black px-3 py-1 bg-pink-100 text-pink-500 rounded-full mb-3 tracking-wide">UI/UX 꾸미기</span>
+                        <img src="emoji/1f4d6.png" class="w-8 h-8 mb-3 mx-auto" alt="책">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">첫 실행 안내 (가이드)</h4>
+                        <p class="text-[13px] text-pink-500 font-black mb-3">+10만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">고객이 앱을 설치하고 처음 켰을 때, 사용 방법을 그림으로 안내해 줍니다.</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-pink-200 hover:shadow-md transition text-center h-full">
+                        <span class="text-[10px] font-black px-3 py-1 bg-pink-100 text-pink-500 rounded-full mb-3 tracking-wide">UI/UX 꾸미기</span>
+                        <img src="emoji/1f58c.png" class="w-8 h-8 mb-3 mx-auto" alt="붓">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">폰트 적용</h4>
+                        <p class="text-[13px] text-pink-500 font-black mb-3">+10만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">앱의 글자를 이쁘게 꾸밉니다.(무료시안에서는 기본 폰트 적용)</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-pink-200 hover:shadow-md transition text-center h-full">
+                        <span class="text-[10px] font-black px-3 py-1 bg-pink-100 text-pink-500 rounded-full mb-3 tracking-wide">UI/UX 꾸미기</span>
+                        <img src="emoji/23f9.png" class="w-8 h-8 mb-3 mx-auto" alt="정지">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">프로그래스바</h4>
+                        <p class="text-[13px] text-pink-500 font-black mb-3">+10만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">프로그래스바로 진행 상태를 시각화합니다.(원형, 바형)</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-pink-200 hover:shadow-md transition text-center h-full">
+                        <span class="text-[10px] font-black px-3 py-1 bg-pink-100 text-pink-500 rounded-full mb-3 tracking-wide">UI/UX 꾸미기</span>
+                        <img src="emoji/1f3a8.png" class="w-8 h-8 mb-3 mx-auto" alt="팔레트">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">아이콘</h4>
+                        <p class="text-[13px] text-pink-500 font-black mb-3">+10만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">앱의 아이콘을 그래픽이미지로 꾸밉니다.(기본:단색배경의 단색 아이콘)</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-pink-200 hover:shadow-md transition text-center h-full">
+                        <span class="text-[10px] font-black px-3 py-1 bg-pink-100 text-pink-500 rounded-full mb-3 tracking-wide">UI/UX 꾸미기</span>
+                        <img src="emoji/1f4f2.png" class="w-8 h-8 mb-3 mx-auto" alt="폰">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">웹사이트 감싸기</h4>
+                        <p class="text-[13px] text-pink-500 font-black mb-3">+10만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">자신의 웹사이트를 앱으로 띄워 웹을 앱처럼 보이게 합니다.</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-pink-200 hover:shadow-md transition text-center h-full">
+                        <span class="text-[10px] font-black px-3 py-1 bg-pink-100 text-pink-500 rounded-full mb-3 tracking-wide">UI/UX 꾸미기</span>
+                        <img src="emoji/1f4ac.png" class="w-8 h-8 mb-3 mx-auto" alt="채팅">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">피칭 데이터 입력</h4>
+                        <p class="text-[13px] text-pink-500 font-black mb-3">+10만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">시연용 가짜 데이터를 입력하고 세팅합니다.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. 프리미엄 고급 제어 -->
+            <div data-aos="fade-up" data-aos-delay="0">
+                <h3 class="text-[20px] font-black text-slate-800 mb-6 flex items-center gap-2 pb-3 border-b-2 border-slate-100">
+                    <img src="emoji/1f680.png" class="w-6 h-6 inline-block" alt="로켓"> 5. 프리미엄 기능 <span class="text-[13px] font-medium text-slate-400 ml-2 font-normal hidden sm:inline-block">스마트폰 시스템 깊숙이 제어하는 고급 기술</span>
+                </h3>
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-orange-200 hover:shadow-md transition text-center h-full">
+                        <span class="text-[10px] font-black px-3 py-1 bg-orange-100 text-orange-600 rounded-full mb-3 tracking-wide">고급 시스템</span>
+                        <img src="emoji/1f504.png" class="w-8 h-8 mb-3 mx-auto" alt="새로고침">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">화면 꺼져도 실행</h4>
+                        <p class="text-[13px] text-orange-500 font-black mb-3">프리미엄 / +40만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">스마트폰 화면을 끄거나 다른 앱을 열어도 뒤에서 계속 동작합니다.</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-orange-200 hover:shadow-md transition text-center h-full">
+                        <span class="text-[10px] font-black px-3 py-1 bg-orange-100 text-orange-600 rounded-full mb-3 tracking-wide">고급 시스템</span>
+                        <img src="emoji/1f4d1.png" class="w-8 h-8 mb-3 mx-auto" alt="문서">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">다른 앱 위에 표시</h4>
+                        <p class="text-[13px] text-orange-500 font-black mb-3">프리미엄 / +40만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">유튜브 미니창처럼 어떤 상황에서도 화면 구석에 작은 앱 창을 띄웁니다.</p>
+                    </div>                    
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-orange-200 hover:shadow-md transition text-center h-full">
+                        <span class="text-[10px] font-black px-3 py-1 bg-orange-100 text-orange-600 rounded-full mb-3 tracking-wide">고급 시스템</span>
+                        <img src="emoji/1f4e9.png" class="w-8 h-8 mb-3 mx-auto" alt="편지">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">알림 읽기</h4>
+                        <p class="text-[13px] text-orange-500 font-black mb-3">프리미엄 / +40만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">알림바에 뜨는 카톡/문자등의 알림을 가져와서 스크롤창이 띄우거나, 처리합니다.</p>
+                    </div>
+                    <!-- 5. 화면 캡처 및 녹화 방지 (Security Flag) -->
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-orange-200 hover:shadow-md transition text-center h-full" data-aos="fade-up" data-aos-delay="500">
+                        <span class="text-[10px] font-black px-3 py-1 bg-orange-100 text-orange-600 rounded-full mb-3 tracking-wide">고급 시스템</span>
+                        <img src="emoji/1f6e1.png" class="w-8 h-8 mb-3 mx-auto" alt="방패">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">화면 캡처 및 녹화 방지</h4>
+                        <p class="text-[13px] text-orange-500 font-black mb-3">프리미엄 / +40만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">콘텐츠 유출을 막기 위해 앱 내 특정 화면에서 스크린샷 촬영이나 화면 녹화 기능을 원천 차단합니다.</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-orange-200 hover:shadow-md transition text-center h-full">
+                        <span class="text-[10px] font-black px-3 py-1 bg-orange-100 text-orange-600 rounded-full mb-3 tracking-wide">고급 시스템</span>
+                        <img src="emoji/1f514.png" class="w-8 h-8 mb-3 mx-auto" alt="종">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">알림 띄우기</h4>
+                        <p class="text-[13px] text-orange-500 font-black mb-3">+20만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">정해진 시간이나 조건에 맞춰 스마트폰 상단에 알림을 띄웁니다.</p>
+                    </div>
+                    <!-- 1. 기기 부팅 시 자동 실행 (Background Boot Receiver) -->
+                    <div class="flex flex-col items-center justify-start p-5 border border-slate-100 rounded-2xl bg-white shadow-sm hover:border-orange-200 hover:shadow-md transition text-center h-full" data-aos="fade-up" data-aos-delay="100">
+                        <span class="text-[10px] font-black px-3 py-1 bg-orange-100 text-orange-600 rounded-full mb-3 tracking-wide">고급 시스템</span>
+                        <img src="emoji/1f50c.png" class="w-8 h-8 mb-3 mx-auto" alt="플러그">
+                        <h4 class="text-[15px] font-bold text-slate-800 leading-tight mb-1 word-keep">부팅 시 자동 실행</h4>
+                        <p class="text-[13px] text-orange-500 font-black mb-3">+20만원</p>
+                        <p class="text-[12px] text-slate-500 font-light leading-relaxed word-keep">스마트폰 전원을 껐다 켤 때 앱을 켜지 않아도 백그라운드 서비스를 자동으로 시작합니다.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 3. 패키지 안내 영역 -->
+    <section id="pricing" class="py-20 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-14">
+                <span class="text-xs font-bold bg-blue-100 text-blue-600 px-3 py-1 rounded-full mb-3 inline-block">STEP 3. 패키지 결정</span>
+                <h2 class="text-3xl font-black mb-4">3가지 Proto 패키지</h2>
+                <p class="text-slate-500 font-medium">선택한 앱 템플릿과 기능 블록 규모에 맞는 패키지를 확인하세요</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
+                <!-- Lite Package -->
+                <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm flex flex-col text-center" data-aos="fade-up">
+                    <div class="flex items-center justify-center gap-2 mb-3">
+                        <img src="emoji/1f530.png" class="w-8 h-8" alt="초보">
+                        <h3 class="text-2xl font-black">Lite</h3>
+                    </div>
+                    <p class="text-[13px] font-medium text-slate-500 mb-6 min-h-[40px] word-keep">단일 목적의 가장 뼈대가 되는 기본 앱</p>
+                    <div class="text-[40px] font-black mb-8 tracking-tight">399,000<span class="text-lg font-medium text-slate-400 ml-1.5">원</span></div>
+                    
+                    <div class="flex-1 text-left">
+                        <ul class="space-y-3 text-[14px] text-slate-700 font-bold">
+                            <li class="flex items-center gap-2"><span class="text-green-500 text-lg">✓</span> 최대 2화면</li>
+                            <li class="flex items-center gap-2"><span class="text-green-500 text-lg">✓</span> <strong class="text-green-600">[기록 및 목록]<br>[앱꾸미기]</strong> 블럭중 2개 무료</li>
+                        </ul>
+                    </div>
+            
+                    <div class="mt-auto pt-4 border-t border-slate-100 text-left">
+                        <ul class="space-y-1 text-[14px] text-slate-700 font-bold">
+                            <li class="flex items-center gap-2"><span class="text-green-500 text-lg">✓</span> 안드로이드 전용 APK 설치 파일 제공</li>
+                            <li class="flex items-center gap-2"><span class="text-green-500 text-lg">✓</span> 전체 소스코드 제공(Kotlin)</li>
+                        </ul>
+                    </div>
+                </div>
+            
+                <!-- Standard Package -->
+                <div class="bg-white rounded-3xl p-8 border-[3px] border-blue-500 shadow-2xl relative flex flex-col z-10 text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-500 text-white px-5 py-1.5 rounded-full text-[11px] font-black shadow-md tracking-wider">가장 인기</div>
+                    <div class="flex items-center justify-center gap-2 mb-3 mt-2">
+                        <img src="emoji/1f680.png" class="w-8 h-8" alt="로켓">
+                        <h3 class="text-2xl font-black text-blue-600">Standard</h3>
+                    </div>
+                    <p class="text-[13px] font-medium text-slate-500 mb-6 min-h-[40px] word-keep">기기 연동과 디자인이 포함된 표준 앱</p>
+                    <div class="text-[44px] font-black mb-8 tracking-tight text-blue-900">599,000<span class="text-lg font-medium text-slate-400 ml-1.5">원</span></div>                    
+                    
+                    <div class="flex-1 text-left">
+                        <ul class="space-y-3 text-[14px] text-slate-700 font-bold">
+                            <li class="flex items-center gap-2"><span class="text-blue-500 text-lg">✓</span> 최대 4화면</li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-blue-500 text-lg mt-0.5">✓</span>
+                                <strong class="text-blue-600">[기록 및 목록]<br>[스마트폰 기능]<br>[앱꾸미기]<br></strong>블럭 중 4개 무료
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-auto pt-4 border-t border-slate-100 text-left">
+                        <ul class="space-y-1 text-[14px] text-slate-700 font-bold">
+                            <li class="flex items-center gap-2"><span class="text-blue-500 text-lg">✓</span> 안드로이드 전용 APK 설치 파일 제공</li>
+                            <li class="flex items-center gap-2"><span class="text-blue-500 text-lg">✓</span> 전체 소스코드 제공(Kotlin)</li>
+                        </ul>
+                    </div>
+                </div>
+            
+                <!-- Premium Package -->
+                <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm flex flex-col text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center justify-center gap-2 mb-3">
+                        <img src="emoji/2728.png" class="w-8 h-8" alt="반짝">
+                        <h3 class="text-2xl font-black">AI Premium</h3>
+                    </div>
+                    <p class="text-[13px] font-medium text-slate-500 mb-6 min-h-[40px] word-keep">AI 기능과 특수 시스템 제어가 포함된 고급 앱</p>
+                    <div class="text-[40px] font-black mb-8 tracking-tight">1,490,000<span class="text-lg font-medium text-slate-400 ml-1.5">원</span></div>                   
+                    
+                    <div class="flex-1 text-left">
+                        <ul class="space-y-3 text-[14px] text-slate-700 font-bold">
+                            <li class="flex items-center gap-2"><span class="text-purple-500 text-lg">✓</span> 최대 6화면</li>
+                            <li class="flex items-center gap-2"><span class="text-purple-500 text-lg">✓</span> <strong class="text-purple-600">[<img src="emoji/1f916.png" class="w-4 h-4 inline-block -mt-0.5" alt="로봇"> AI 기능]</strong> 100만원 상당 블럭 무료</li>                        
+                            <li class="flex items-center gap-2">
+                                <span class="text-purple-500 text-lg mt-0.5">✓</span>
+                                <strong class="text-purple-600">[기록 및 목록]<br>[스마트폰 기능]<br>[앱꾸미기]<br></strong>블럭 중 4개 무료
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-slate-100 text-left">
+                        <ul class="space-y-1 text-[14px] text-slate-700 font-bold">
+                            <li class="flex items-center gap-2"><span class="text-purple-500 text-lg">✓</span> 안드로이드 전용 APK 설치 파일 제공</li>
+                            <li class="flex items-center gap-2"><span class="text-purple-500 text-lg">✓</span> 전체 소스코드 제공(Kotlin)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="text-center text-[13px] font-light text-slate-400 mt-12">* 모든 패키지에서 요구사항에 맞게 화면 수 및 기능 추가/제외가 가능합니다.</p>
+        </div>
+    </section>
+
+    <section id="portfolio" class="py-16 bg-white overflow-hidden border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 mb-8">
+            <h2 class="text-2xl font-black">포트폴리오</h2>
+        </div>
+        
+        <div class="portfolio-slider">
+            <div class="portfolio-track">
+                
+                <!-- 첫 번째 세트 -->
+                <div class="flex gap-6">
+                    <a href="javascript:void(0)" onclick="openModal('img/portfolio5.png')" class="w-[200px] shrink-0 text-center flex flex-col items-center hover:opacity-80 transition cursor-pointer">
+                        <div class="w-full aspect-[9/18] bg-slate-100 rounded-[8px] border-[2px] border-slate-500 shadow-md mb-4 overflow-hidden relative">
+                            <img src="img/portfolio5.png" alt="AI 운동 코치" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-[15px]">AI 운동 코치</h4>
+                        <p class="text-[12px] font-light text-slate-400 mt-1">AI 추천 및 운동 관리</p>
+                    </a>
+                    
+                    <a href="javascript:void(0)" onclick="openModal('img/portfolio4.png')" class="w-[200px] shrink-0 text-center flex flex-col items-center hover:opacity-80 transition cursor-pointer">
+                        <div class="w-full aspect-[9/18] bg-slate-900 rounded-[8px] border-[2px] border-slate-500 shadow-md mb-4 overflow-hidden relative">
+                            <img src="img/portfolio4.png" alt="집중력 강화 앱" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-[15px]">집중력 강화 앱</h4>
+                        <p class="text-[12px] font-light text-slate-400 mt-1">타이머 및 통계</p>
+                    </a>
+                    
+                    <a href="javascript:void(0)" onclick="openModal('img/portfolio3.png')" class="w-[200px] shrink-0 text-center flex flex-col items-center hover:opacity-80 transition cursor-pointer">
+                        <div class="w-full aspect-[9/18] bg-white rounded-[8px] border-[2px] border-slate-500 shadow-md mb-4 overflow-hidden relative">
+                            <img src="img/portfolio3.png" alt="스마트 기록 앱" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-[15px]">스마트 기록 앱</h4>
+                        <p class="text-[12px] font-light text-slate-400 mt-1">일정 및 기록 관리</p>
+                    </a>
+                    
+                    <a href="javascript:void(0)" onclick="openModal('img/portfolio2.png')" class="w-[200px] shrink-0 text-center flex flex-col items-center hover:opacity-80 transition cursor-pointer">
+                        <div class="w-full aspect-[9/18] bg-slate-50 rounded-[8px] border-[2px] border-slate-500 shadow-md mb-4 overflow-hidden relative">
+                            <img src="img/portfolio2.png" alt="비즈니스 관리 앱" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-[15px]">비즈니스 관리 앱</h4>
+                        <p class="text-[12px] font-light text-slate-400 mt-1">고객 및 매출 관리</p>
+                    </a>
+                    
+                    <a href="javascript:void(0)" onclick="openModal('img/portfolio1.png')" class="w-[200px] shrink-0 text-center flex flex-col items-center hover:opacity-80 transition cursor-pointer">
+                        <div class="w-full aspect-[9/18] bg-white rounded-[8px] border-[2px] border-slate-500 shadow-md mb-4 overflow-hidden relative">
+                            <img src="img/portfolio1.png" alt="학습 관리 앱" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-[15px]">학습 관리 앱</h4>
+                        <p class="text-[12px] font-light text-slate-400 mt-1">학습 진도 및 분석</p>
+                    </a>
+                </div>
+
+                <div class="flex gap-6">
+                    <a href="javascript:void(0)" onclick="openModal('img/portfolio5.png')" class="w-[200px] shrink-0 text-center flex flex-col items-center hover:opacity-80 transition cursor-pointer">
+                        <div class="w-full aspect-[9/18] bg-slate-100 rounded-[8px] border-[2px] border-slate-500 shadow-md mb-4 overflow-hidden relative">
+                            <img src="img/portfolio5.png" alt="AI 운동 코치" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-[15px]">AI 운동 코치</h4>
+                        <p class="text-[12px] font-light text-slate-400 mt-1">AI 추천 및 운동 관리</p>
+                    </a>
+                    
+                    <a href="javascript:void(0)" onclick="openModal('img/portfolio4.png')" class="w-[200px] shrink-0 text-center flex flex-col items-center hover:opacity-80 transition cursor-pointer">
+                        <div class="w-full aspect-[9/18] bg-slate-900 rounded-[8px] border-[2px] border-slate-500 shadow-md mb-4 overflow-hidden relative">
+                            <img src="img/portfolio4.png" alt="집중력 강화 앱" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-[15px]">집중력 강화 앱</h4>
+                        <p class="text-[12px] font-light text-slate-400 mt-1">타이머 및 통계</p>
+                    </a>
+                    
+                    <a href="javascript:void(0)" onclick="openModal('img/portfolio3.png')" class="w-[200px] shrink-0 text-center flex flex-col items-center hover:opacity-80 transition cursor-pointer">
+                        <div class="w-full aspect-[9/18] bg-white rounded-[8px] border-[2px] border-slate-500 shadow-md mb-4 overflow-hidden relative">
+                            <img src="img/portfolio3.png" alt="스마트 기록 앱" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-[15px]">스마트 기록 앱</h4>
+                        <p class="text-[12px] font-light text-slate-400 mt-1">일정 및 기록 관리</p>
+                    </a>
+                    
+                    <a href="javascript:void(0)" onclick="openModal('img/portfolio2.png')" class="w-[200px] shrink-0 text-center flex flex-col items-center hover:opacity-80 transition cursor-pointer">
+                        <div class="w-full aspect-[9/18] bg-slate-50 rounded-[8px] border-[2px] border-slate-500 shadow-md mb-4 overflow-hidden relative">
+                            <img src="img/portfolio2.png" alt="비즈니스 관리 앱" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-[15px]">비즈니스 관리 앱</h4>
+                        <p class="text-[12px] font-light text-slate-400 mt-1">고객 및 매출 관리</p>
+                    </a>
+                    
+                    <a href="javascript:void(0)" onclick="openModal('img/portfolio1.png')" class="w-[200px] shrink-0 text-center flex flex-col items-center hover:opacity-80 transition cursor-pointer">
+                        <div class="w-full aspect-[9/18] bg-white rounded-[8px] border-[2px] border-slate-500 shadow-md mb-4 overflow-hidden relative">
+                            <img src="img/portfolio1.png" alt="학습 관리 앱" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-[15px]">학습 관리 앱</h4>
+                        <p class="text-[12px] font-light text-slate-400 mt-1">학습 진도 및 분석</p>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 이미지 팝업 모달 영역 -->
+        <div id="imageModal" class="fixed inset-0 z-50 hidden bg-black/80 flex items-center justify-center p-4 backdrop-blur-sm transition-opacity" onclick="closeModal()">
+            <button class="absolute top-6 right-6 text-white text-4xl hover:text-gray-300 transition focus:outline-none" onclick="closeModal()">&times;</button>
+            <img id="modalImage" class="max-w-full max-h-[90vh] rounded-2xl shadow-2xl object-contain" src="" alt="확대된 포트폴리오 이미지" onclick="event.stopPropagation()">
+        </div>
+    </section>
+
+    <section id="process" class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="bg-[#090E17] rounded-3xl p-8 lg:p-12 flex flex-col xl:flex-row items-center justify-between text-white border border-slate-800 shadow-xl" data-aos="fade-up">
+                
+                <div class="mb-10 xl:mb-0 text-center xl:text-left shrink-0 xl:mr-10">
+                    <h2 class="text-[28px] font-black">진행 절차</h2>
+                    <p class="text-sm font-light text-slate-400 mt-1">간단하고 빠른 5단계</p>
+                </div>
+
+                <div class="flex flex-wrap md:flex-nowrap items-center justify-center gap-6 xl:gap-8 flex-1 w-full overflow-x-auto pb-4 xl:pb-0 hide-scrollbar">
+                    
+                    <div class="flex flex-col items-center shrink-0 min-w-[100px]">
+                        <div class="process-icon-box mb-4 text-blue-500">
+                            <svg class="w-5 h-5 mx-auto relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                            <span class="absolute -right-2 -bottom-2 text-[10px] text-blue-400 font-bold bg-[#090E17] px-1 z-10">01</span>
+                        </div>
+                        <h4 class="font-bold text-[15px] mb-1 text-slate-100">무료 시안</h4>
+                        <p class="text-[11px] font-light text-slate-400">상품/옵션/요구사항</p>
+                    </div>
+
+                    <div class="text-slate-600 hidden md:block text-lg font-light">></div>
+
+                    <div class="flex flex-col items-center shrink-0 min-w-[100px]">
+                        <div class="process-icon-box mb-4 text-blue-500">
+                            <svg class="w-5 h-5 mx-auto relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+                            <span class="absolute -right-2 -bottom-2 text-[10px] text-blue-400 font-bold bg-[#090E17] px-1 z-10">02</span>
+                        </div>
+                        <h4 class="font-bold text-[15px] mb-1 text-slate-100">시안 제작</h4>
+                        <p class="text-[11px] font-light text-slate-400">24시간 내 제공</p>
+                    </div>
+
+                    <div class="text-slate-600 hidden md:block text-lg font-light">></div>
+
+                    <div class="flex flex-col items-center shrink-0 min-w-[100px]">
+                        <div class="process-icon-box mb-4 text-blue-500">
+                            <svg class="w-5 h-5 mx-auto relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            <span class="absolute -right-2 -bottom-2 text-[10px] text-blue-400 font-bold bg-[#090E17] px-1 z-10">03</span>
+                        </div>
+                        <h4 class="font-bold text-[15px] mb-1 text-slate-100">개발 의뢰</h4>
+                        <p class="text-[11px] font-light text-slate-400">시안선택 및 개발요청</p>
+                    </div>
+
+                    <div class="text-slate-600 hidden md:block text-lg font-light">></div>
+
+                    <div class="flex flex-col items-center shrink-0 min-w-[100px]">
+                        <div class="process-icon-box mb-4 text-blue-500">
+                            <svg class="w-5 h-5 mx-auto relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                            <span class="absolute -right-2 -bottom-2 text-[10px] text-blue-400 font-bold bg-[#090E17] px-1 z-10">04</span>
+                        </div>
+                        <h4 class="font-bold text-[15px] mb-1 text-slate-100">개발 진행</h4>
+                        <p class="text-[11px] font-light text-slate-400">7일 이내 개발 완료</p>
+                    </div>
+
+                    <div class="text-slate-600 hidden md:block text-lg font-light">></div>
+
+                    <div class="flex flex-col items-center shrink-0 min-w-[100px]">
+                        <div class="process-icon-box mb-4 text-blue-500">
+                            <svg class="w-5 h-5 mx-auto relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <span class="absolute -right-2 -bottom-2 text-[10px] text-blue-400 font-bold bg-[#090E17] px-1 z-10">05</span>
+                        </div>
+                        <h4 class="font-bold text-[15px] mb-1 text-yellow-400">검수 및 납품</h4>
+                        <p class="text-[11px] font-light text-slate-400">최종 검수 후 납품</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="faq" class="py-16 bg-slate-100 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-10" data-aos="fade-up">
+                <span class="text-xs font-bold bg-slate-200 text-slate-600 px-3 py-1 rounded-full mb-3 inline-block">전략적 개발 범위 안내</span>
+                <h2 class="text-2xl font-black mb-4">무거운 백엔드는 과감히 버렸습니다.</h2>
+                <p class="text-slate-600 font-medium max-w-2xl mx-auto word-keep leading-relaxed text-[15px]">
+                    초기 아이디어 검증(프로토타입 제작)에 수천만 원짜리 서버와 결제 시스템은 사치입니다.<br>
+                    프로토앱스는 고객과 투자자의 눈을 사로잡을 <strong class="text-slate-800 font-black">'눈에 보이는 화면(Front-end)'</strong>에만 집중하여 비용과 시간을 혁신적으로 줄였습니다.<br>
+                    따라서, 아래의 무거운 기능들은 <strong class="text-red-500 font-black">의도적으로 제외</strong>하여 빠르고 안전하게 제공합니다.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
+                    <h4 class="font-bold text-slate-800 mb-4 pb-2 border-b border-slate-100 flex items-center gap-2">
+                        <img src="emoji/2601.png" class="w-5 h-5 inline-block opacity-70" alt="구름"> 서버·백엔드 / 실시간
+                    </h4>
+                    <ul class="space-y-2 text-[13px] font-light text-slate-500">
+                        <li class="flex items-start gap-2"><span class="text-red-400 font-bold shrink-0">✕</span> 회원가입, 로그인 및 사용자 계정 관리</li>
+                        <li class="flex items-start gap-2"><span class="text-red-400 font-bold shrink-0">✕</span> 자체 서버 및 데이터베이스(DB) 구축</li>
+                        <li class="flex items-start gap-2"><span class="text-red-400 font-bold shrink-0">✕</span> 관리자 페이지 및 API 서버 개발</li>
+                        <li class="flex items-start gap-2"><span class="text-red-400 font-bold shrink-0">✕</span> 실시간 채팅 / 데이터 동기화 / 알림 서버</li>
+                        <li class="flex items-start gap-2"><span class="text-red-400 font-bold shrink-0">✕</span> 다중 사용자 상호작용 및 위치 공유</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
+                    <h4 class="font-bold text-slate-800 mb-4 pb-2 border-b border-slate-100 flex items-center gap-2">
+                        <img src="emoji/1f4b3.png" class="w-5 h-5 inline-block opacity-70" alt="카드"> 결제·쇼핑몰 / 연동
+                    </h4>
+                    <ul class="space-y-2 text-[13px] font-light text-slate-500">
+                        <li class="flex items-start gap-2"><span class="text-red-400 font-bold shrink-0">✕</span> 카드결제, PG 연동, 인앱/구독 결제</li>
+                        <li class="flex items-start gap-2"><span class="text-red-400 font-bold shrink-0">✕</span> 장바구니, 주문 처리, 재고 및 정산 관리</li>
+                        <li class="flex items-start gap-2"><span class="text-red-400 font-bold shrink-0">✕</span> ERP, 그룹웨어, SAP 등 회사 내부망 연동</li>
+                        <li class="flex items-start gap-2"><span class="text-red-400 font-bold shrink-0">✕</span> 타 웹사이트 자동 웹 크롤링(Crawling)</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
+                    <h4 class="font-bold text-slate-800 mb-4 pb-2 border-b border-slate-100 flex items-center gap-2">
+                        <img src="emoji/2699.png" class="w-5 h-5 inline-block opacity-70" alt="설정"> 하드웨어·AI / 미디어
+                    </h4>
+                    <ul class="space-y-2 text-[13px] font-light text-slate-500">
+                        <li class="flex items-start gap-2"><span class="text-red-400 font-bold shrink-0">✕</span> 블루투스(BLE), 스마트워치, IoT/센서 연동</li>
+                        <li class="flex items-start gap-2"><span class="text-red-400 font-bold shrink-0">✕</span> 자체 AI 모델(LLM) 개발, 학습, RAG 구축</li>
+                        <li class="flex items-start gap-2"><span class="text-red-400 font-bold shrink-0">✕</span> 고정밀 OCR, 음성/얼굴/객체 인식 보장</li>
+                        <li class="flex items-start gap-2"><span class="text-red-400 font-bold shrink-0">✕</span> 실시간 영상 처리(OpenCV), AR, 필터</li>
+                        <li class="flex items-start gap-2"><span class="text-red-400 font-bold shrink-0">✕</span> 백그라운 실시간 위치 추적(배달 관제 등)</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
+                    <h4 class="font-bold text-slate-800 mb-4 pb-2 border-b border-slate-100 flex items-center gap-2">
+                        <img src="emoji/1f6e1.png" class="w-5 h-5 inline-block opacity-70" alt="방패"> 앱 배포·유지보수 / 책임
+                    </h4>
+                    <ul class="space-y-2 text-[13px] font-light text-slate-500">
+                        <li class="flex items-start gap-2"><span class="text-red-400 font-bold shrink-0">✕</span> 플레이스토어 심사 대응, ASO, 다운로드 보장</li>
+                        <li class="flex items-start gap-2"><span class="text-red-400 font-bold shrink-0">✕</span> 상시 유지보수 및 전화/원격/방문 기술 지원</li>
+                        <li class="flex items-start gap-2"><span class="text-red-400 font-bold shrink-0">✕</span> 납품 완료 후 무제한 디자인/기능 수정</li>
+                        <li class="flex items-start gap-2"><span class="text-red-400 font-bold shrink-0">✕</span> 의료/투자/법률/금융 판단 등에 대한 법적 책임</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-14" data-aos="fade-up">
+                <h2 class="text-2xl font-black mb-3">고객님들이 증명하는 속도와 퀄리티</h2>
+                <p class="text-slate-500 font-medium">실제 서비스를 이용하신 창업자 및 대표님들의 생생한 후기입니다.</p>
+            </div>
+            
+            <div class="masonry-grid" data-aos="fade-up" data-aos-delay="100">
+                <div class="masonry-item bg-slate-50 p-6 rounded-2xl border border-slate-100 hover:shadow-md transition">
+                    <div class="text-yellow-400 text-[14px] mb-3">★★★★★</div>
+                    <p class="text-[14px] text-slate-700 font-medium mb-4 leading-relaxed word-keep">"정부지원사업 발표를 앞두고 급하게 시연용 화면이 필요했는데, 신청한 지 10분 만에 시안이 와서 정말 놀랐습니다. 합리적인 가격에 딱 필요한 프론트 화면만 만들어주셔서 무사히 합격했습니다!"</p>
+                    <div class="text-[12px] text-slate-500 font-bold">- IT 스타트업 대표님</div>
+                </div>
+                <div class="masonry-item bg-slate-50 p-6 rounded-2xl border border-slate-100 hover:shadow-md transition">
+                    <div class="text-yellow-400 text-[14px] mb-3">★★★★★</div>
+                    <p class="text-[14px] text-slate-700 font-medium mb-4 leading-relaxed word-keep">"기획서 없이 아이디어만 줄글로 적어서 보냈는데, 제 의도를 정확히 파악해서 퀄리티 높은 UI로 뽑아주셨습니다. 수천만 원 외주 맡기기 전에 아이디어 검증용으로 최고입니다."</p>
+                    <div class="text-[12px] text-slate-500 font-bold">- 플랫폼 서비스 창업자님</div>
+                </div>
+                <div class="masonry-item bg-slate-50 p-6 rounded-2xl border border-slate-100 hover:shadow-md transition">
+                    <div class="text-yellow-400 text-[14px] mb-3">★★★★★</div>
+                    <p class="text-[14px] text-slate-700 font-medium mb-4 leading-relaxed word-keep">"전화 미팅이나 복잡한 소통 없이 이메일로 쿨하게 결과물(APK)만 딱딱 보내주시는 프로세스가 오히려 직관적이고 편했습니다."</p>
+                    <div class="text-[12px] text-slate-500 font-bold">- 사내 벤처 팀장님</div>
+                </div>
+                <div class="masonry-item bg-slate-50 p-6 rounded-2xl border border-slate-100 hover:shadow-md transition">
+                    <div class="text-yellow-400 text-[14px] mb-3">★★★★★</div>
+                    <p class="text-[14px] text-slate-700 font-medium mb-4 leading-relaxed word-keep">"오프라인 매장에서 고객 브리핑용으로 쓸 태블릿 전용 카탈로그 앱이 필요했어요. 서버 연동 없이 단순 화면만 필요했는데, 니즈에 맞게 아주 저렴하게 잘 만들었습니다."</p>
+                    <div class="text-[12px] text-slate-500 font-bold">- 오프라인 가맹점주님</div>
+                </div>
+                <div class="masonry-item bg-slate-50 p-6 rounded-2xl border border-slate-100 hover:shadow-md transition">
+                    <div class="text-yellow-400 text-[14px] mb-3">★★★★★</div>
+                    <p class="text-[14px] text-slate-700 font-medium mb-4 leading-relaxed word-keep">"옵션을 블록처럼 조립할 수 있어서 예산 맞추기가 정말 좋았어요. 스플래시 화면이랑 탭 메뉴만 추가해서 스탠다드 패키지로 진행했는데, 데모데이 때 반응이 너무 좋았습니다."</p>
+                    <div class="text-[12px] text-slate-500 font-bold">- 해커톤준비 대학생</div>
+                </div>
+                <div class="masonry-item bg-slate-50 p-6 rounded-2xl border border-slate-100 hover:shadow-md transition">
+                    <div class="text-yellow-400 text-[14px] mb-3">★★★★★</div>
+                    <p class="text-[14px] text-slate-700 font-medium mb-4 leading-relaxed word-keep">"앱 개발은 아예 처음이라서 APK 파일 설치도 헤맸는데, 같이 보내주신 가이드 덕분에 제 폰에 바로 깔아서 확인해 볼 수 있었어요. 속도와 친절함 모두 만족합니다."</p>
+                    <div class="text-[12px] text-slate-500 font-bold">- 예비창업자님</div>
+                </div>
+                <div class="masonry-item bg-slate-50 p-6 rounded-2xl border border-slate-100 hover:shadow-md transition">
+                    <div class="text-yellow-400 text-[14px] mb-3">★★★★★</div>
+                    <p class="text-[14px] text-slate-700 font-medium mb-4 leading-relaxed word-keep">"SI 업체에 견적 냈더니 2천만 원을 부르던 기획이었습니다. 투자자에게 보여줄 디자인 목업만 필요했던 터라 50만 원에 빠르게 해결하고, 투자 유치 후에 제대로 본 개발 들어갑니다!"</p>
+                    <div class="text-[12px] text-slate-500 font-bold">- O2O 플랫폼 창업자님</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="cta-gradient rounded-3xl p-14 text-center text-white shadow-2xl relative overflow-hidden" data-aos="fade-up">
+                <div class="relative z-10">
+                    <h2 class="text-3xl font-black mb-5">지금 바로<br>무료 시안을 받아보세요!</h2>
+                    <p class="text-indigo-100 mb-10 font-light text-lg">24시간 이내 시안을 이메일로 보내드립니다.</p>                    
+                    
+                    <a href="request.html"
+                    class="inline-flex items-center justify-center gap-2 bg-white text-indigo-600 px-10 py-4 rounded-xl font-black text-lg hover:bg-slate-50 transition shadow-xl">
+                    무료 시안 3종 받기 
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                        <path fill-rule="evenodd" d="M12.97 3.97a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 1 1-1.06-1.06l6.22-6.22H3a.75.75 0 0 1 0-1.5h16.19l-6.22-6.22a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+                </div>
+                <div class="absolute top-0 left-0 w-64 h-64 bg-white opacity-5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+                <div class="absolute bottom-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#0B0F19] text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-8">
+            <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center gap-2 text-white font-black text-lg tracking-tight mb-4">
+                    <div class="w-5 h-5 bg-white rotate-45 rounded-sm"></div>
+                    7APP
+                </div>
+                <p class="text-[13px] font-light leading-relaxed">안드로이드 샘플앱 전문 개발<br>빠르게, 합리적인 가격으로 아이디어를 현실로 만듭니다.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">서비스</h4>
+                <ul class="space-y-2 text-[13px] font-light">
+                    <li><a href="#templates" class="hover:text-white transition">앱 템플릿</a></li>
+                    <li><a href="#blocks" class="hover:text-white transition">기능 조립</a></li>
+                    <li><a href="#pricing" class="hover:text-white transition">상품 안내</a></li>                    
+                    <li><a href="#portfolio" class="hover:text-white transition">포트폴리오</a></li>
+                    <li><a href="#faq" class="hover:text-white transition">서비스 범위</a></li>
+                    <li><a href="./blog/main.html" class="hover:text-white transition">블로그</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">문의 / 정책</h4>
+                <ul class="space-y-2 text-[13px] font-light">
+                    <li>이메일: 7app.kr@gmail.com</li>
+                    <li class="pt-4"><a href="#" class="hover:text-white transition font-bold">개인정보처리방침</a></li>
+                    <li><a href="#" class="hover:text-white transition">이용약관</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 mt-12 pt-8 border-t border-slate-800 text-[12px] font-light text-center">
+            © 2026 7APP. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // AOS 스크롤 애니메이션 초기화
+        document.addEventListener("DOMContentLoaded", function() {
+            AOS.init({
+                once: true,
+                offset: 50,
+            });
+        });
+
+        function openModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modalImg.src = imageSrc;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto'; 
+        }
+    </script>
+</body>
+</html>
