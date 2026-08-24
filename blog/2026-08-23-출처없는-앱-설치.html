@@ -63,6 +63,29 @@
         article h3 { font-size: 1.35rem; font-weight: 800; color: #0F172A; margin-top: 2rem; margin-bottom: 1rem; }
         article h4 { font-size: 1.15rem; font-weight: 700; color: #1E293B; margin-top: 1.5rem; margin-bottom: 0.75rem; }
     </style>
+
+    <!-- 구글 구조화 데이터 (JSON-LD) -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": "출처 없는 앱 설치 자세히 살펴보기 (갤럭시 기준)",
+            "description": "안드로이드 갤럭시 스마트폰에서 플레이스토어를 거치지 않고 APK 파일로 직접 앱을 설치할 때 나타나는 경고창과 해결 방법을 단계별로 자세히 알아봅니다.",
+            "image": "https://7app.kr/favicon/og-image-corporate.png",
+            "author": {
+            "@type": "Organization",
+            "name": "7APP"
+            },
+            "publisher": {
+            "@type": "Organization",
+            "name": "7APP"
+            },
+            "datePublished": "2026-08-23",
+            "mainEntityOfPage": "https://7app.kr/blog/2026-08-23-출처없는-앱-설치.html"
+        }
+    </script>
+
+
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-[#6B46C1] selection:text-white font-normal">
 
@@ -70,8 +93,10 @@
     <header class="fixed w-full top-0 z-50 bg-[#0F172A]/90 backdrop-blur-md border-b border-slate-800 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <a href="../index.html" class="flex items-center gap-2 text-white font-black text-xl tracking-tight">
-                <div class="w-6 h-6 bg-white rotate-45 rounded-sm"></div>
-                7APP
+                <div class="flex items-center text-white font-black text-xl tracking-tight">
+                    <img src="../img/7.png" class="w-5 h-5 inline-block " style="filter: brightness(0) invert(1);" alt="로고">
+                    <span class="-ml-1">APP</span>
+                </div>
             </a>
             <nav class="hidden md:flex gap-8 text-sm text-slate-300 font-medium">
                 <a href="../index.html#templates" class="hover:text-white transition">앱 템플릿</a>
@@ -283,9 +308,9 @@
     <footer class="bg-[#0B0F19] text-slate-400 py-12 border-t border-slate-800 mt-16">
         <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-8">
             <div class="col-span-1 md:col-span-2">
-                <div class="flex items-center gap-2 text-white font-black text-lg tracking-tight mb-4">
-                    <div class="w-5 h-5 bg-white rotate-45 rounded-sm"></div>
-                    7APP
+                <div class="flex items-center text-white font-black text-xl tracking-tight">
+                    <img src="../img/7.png" class="w-5 h-5 inline-block " style="filter: brightness(0) invert(1);" alt="로고">
+                    <span class="-ml-1">APP</span>
                 </div>
                 <p class="text-[13px] font-light leading-relaxed">안드로이드 샘플앱 전문 개발<br>빠르게, 합리적인 가격으로 아이디어를 현실로 만듭니다.</p>
             </div>
